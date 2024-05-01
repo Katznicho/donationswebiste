@@ -5,9 +5,10 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <div class="mx-auto py-20 lg:py-40 sm:py-10 px-10 sm:px-5 md:px-20 bg-gray-300">
+    <div class="mx-auto py-20 lg:py-40 sm:py-10 px-10 sm:px-5 md:px-20 bg-gray-200">
         <div
-            class="summary bg-white md:flex-row sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100">
+            class="bg-white-300 summary  md:flex-row 
+        sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100" style="background-color: white !important;">
             <img class="w-20 h-20 rounded-full object-cover mx-auto mt-5 mb-0 sm:mt-5 sm:mb-0 md:mr-5 md:ml-10"
                 src="{{ $child->profile_picture }}" alt="Placeholder Image">
 
@@ -18,7 +19,7 @@
                 $age = $now->diff($dob)->y;
             @endphp
 
-            <div class="text-center md:text-left">
+            <div class="text-center md:text-left ">
                 <h3 class="font-bold mb-0 text-xl mt-5 text-blue-900">{{ $child->first_name }} {{ $child->second_name }}
                     <span class="ageup">{{ $age }} yrs</span>
                 </h3>
@@ -48,7 +49,7 @@
         </div>
 
 
-        <form action="{{ route('child.store') }}" method="POST">
+        <form action="{{ route('child.store') }}" method="POST" style="background-color: white !important;" class="p-4">
 
             <!-- Container to hold children cards -->
             <div id="childrenContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>

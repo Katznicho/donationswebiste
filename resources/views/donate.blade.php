@@ -11,127 +11,108 @@
         {{-- @include('components.tabs') --}}
         <!-- Tabs Section -->
 
-
-
-
-
-
         <!-- Banner Section -->
         @include('components.donatetab')
         <!-- Banner Section -->
 
+        <h1 class="text-5xl font-medium text-gray-600 mt-10 mb-4">Our Projects</h1>
+        <p class="text-lg text-gray-600 mt-1 mb-10">
+            We provide orphaned and abandoned children with a loving Christian home where they receive all the love,
+            care, protection and practical support they need to thrive.
+        </p>
 
-         <h1 class="text-5xl font-medium text-gray-600 mt-10 mb-4">Our Projects</h1>
-            <p class="text-lg text-gray-600 mt-1 mb-10">
-                We provide orphaned and abandoned children with a loving Christian home where they receive all the love,
-                care, protection and practical support they need to thrive.
-            </p>
-
-        <div class="container mx-auto mt-4 mb-10">
-            <div class="bg-gray-200 shadow-md rounded-lg sm:p-4 md:p-4 lg:p-10 flex flex-col lg:flex-row items-center">
+        <div class="container mx-auto mt-4 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Repeat this block for each project -->
+            {{-- @foreach ($projects as $project) --}}
+            <div class="bg-gray-200 shadow-md rounded-lg overflow-hidden">
                 <img src="{{ asset('images/banners/child_one.jpg') }}" alt="Banner Image"
-                    class="lg:w-1/2 sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
-                <div class="flex flex-col justify-between w-full lg:w-1/2 p-4">
-                    <h3 class="text-xl font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX 4,000,000</span></h3>
-                    <div class="w-full bg-gray-300 rounded-full h-2 ">
+                    class="lg:w-full sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
+                <div class="p-6">
+                    <h3 class="text-md font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX
+                            4,000,000</span></h3>
+
+                   
+                    <div class="w-1/2 bg-gray-300 rounded-full h-2 mb-10">
                         <div class="w-1/2 bg-blue-500 rounded-full h-2">
                             <span style="float: left; margin-top: 10px;" class="mt-1 text-left"> Raised</span>
                         </div>
                         <span style="float: right;" class="mt-1 text-right"> 49%</span>
                     </div>
-                    <p class="text-gray-600 mt-10 mb-20"> We provide orphaned and abandoned children with a loving Christian
-                        home
+
+                     {{-- <p class="text-gray-600 mb-4">{{ $project['description'] }}</p> --}}
+                    <p class="text-gray-600 mb-4 mt-10">We provide orphaned and abandoned children with a loving Christian home
                         where they receive all the love, care, protection and practical support they need to thrive.
-                        With UGX 38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.</p>
-                    <button
-                        class="mt-10 bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4 w-40">Give</button>
+                        <br>
+                        With $38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
+                        and for some in extreme health conditions, place them under intense medical program.
+                    </p>
+                    <div class="mt-6">
+                        <button
+                            class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-1/2 mt-5">Give</button>
+                    </div>
                 </div>
             </div>
-        </div>
+            {{-- @endforeach --}}
 
-
-
-
-
-
-          <div class="container mx-auto mt-4 mb-10">
-            <div class="bg-gray-200 shadow-md rounded-lg sm:p-4 md:p-4 lg:p-10 flex flex-col lg:flex-row items-center">
+            <div class="bg-gray-200 shadow-md rounded-lg overflow-hidden">
                 <img src="{{ asset('images/banners/child_one.jpg') }}" alt="Banner Image"
-                    class="lg:w-1/2 sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
-                <div class="flex flex-col justify-between w-full lg:w-1/2 p-4">
-                    <h3 class="text-xl font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX 4,000,000</span></h3>
-                    <div class="w-full bg-gray-300 rounded-full h-2 ">
+                    class="lg:w-full sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
+                <div class="p-6">
+                    <h3 class="text-md font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX
+                            4,000,000</span></h3>
+                    <div class="w-1/2 bg-gray-300 rounded-full h-2 mb-10">
                         <div class="w-1/2 bg-blue-500 rounded-full h-2">
                             <span style="float: left; margin-top: 10px;" class="mt-1 text-left"> Raised</span>
                         </div>
                         <span style="float: right;" class="mt-1 text-right"> 49%</span>
                     </div>
-                    <p class="text-gray-600 mt-10 mb-20"> We provide orphaned and abandoned children with a loving Christian
-                        home
+
+                    {{-- <p class="text-gray-600 mb-4">{{ $project['description'] }}</p> --}}
+                    <p class="text-gray-600 mb-4 mt-10">We provide orphaned and abandoned children with a loving Christian home
                         where they receive all the love, care, protection and practical support they need to thrive.
-                        With UGX 38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.</p>
-                    <button
-                        class="mt-10 bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4 w-40">Give</button>
+                        <br>
+                        With $38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
+                        and for some in extreme health conditions, place them under intense medical program.
+                    </p>
+
+                    <div class="mt-6">
+                        <button
+                            class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-1/2 mt-5">Give</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-
-          <div class="container mx-auto mt-4 mb-10">
-            <div class="bg-gray-200 shadow-md rounded-lg sm:p-4 md:p-4 lg:p-10 flex flex-col lg:flex-row items-center">
+            {{-- next --}}
+            <div class="bg-gray-200 shadow-md rounded-lg overflow-hidden">
                 <img src="{{ asset('images/banners/child_one.jpg') }}" alt="Banner Image"
-                    class="lg:w-1/2 sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
-                <div class="flex flex-col justify-between w-full lg:w-1/2 p-4">
-                    <h3 class="text-xl font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX 4,000,000</span></h3>
+                    class="lg:w-full sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
+                <div class="p-6">
+                    <h3 class="text-md font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX
+                            4,000,000</span></h3>
+
+                   
+
                     <div class="w-1/2 bg-gray-300 rounded-full h-2 ">
                         <div class="w-1/2 bg-blue-500 rounded-full h-2">
                             <span style="float: left; margin-top: 10px;" class="mt-1 text-left"> Raised</span>
                         </div>
                         <span style="float: right;" class="mt-1 text-right"> 49%</span>
                     </div>
-                    <p class="text-gray-600 mt-10 mb-20"> We provide orphaned and abandoned children with a loving Christian
-                        home
-                        where they receive all the love, care, protection and practical support they need to thrive.
-                        With UGX 38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.</p>
-                    <button
-                        class="mt-10 bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4 w-40">Give</button>
-                </div>
-            </div>
-        </div>
 
-        
-           <div class="container mx-auto mt-4 mb-10">
-            <div class="bg-gray-200 shadow-md rounded-lg sm:p-4 md:p-4 lg:p-10 flex flex-col lg:flex-row items-center">
-                <img src="{{ asset('images/banners/child_one.jpg') }}" alt="Banner Image"
-                    class="lg:w-1/2 sm:w-full  h-80 lg:h-auto object-cover mb-4 lg:mb-0 p-4">
-                <div class="flex flex-col justify-between w-full lg:w-1/2 p-4">
-                    <h3 class="text-xl font-bold mb-2 ">CLASSROOM RENOVATIONS<span style="font-weight: normal;">&nbsp; UGX 4,000,000</span></h3>
-                    <div class="w-1/2 bg-gray-300 rounded-full h-2 ">
-                        <div class="w-1/2 bg-blue-500 rounded-full h-2">
-                            <span style="float: left; margin-top: 10px;" class="mt-1 text-left"> Raised</span>
-                        </div>
-                        <span style="float: right;" class="mt-1 text-right"> 49%</span>
+                     {{-- <p class="text-gray-600 mb-4">{{ $project['description'] }}</p> --}}
+                    <p class="text-gray-600 mb-4 mt-4">We provide orphaned and abandoned children with a loving Christian home
+                        where they receive all the love, care, protection and practical support they need to thrive.
+                        <br>
+                        With $38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
+                        and for some in extreme health conditions, place them under intense medical program.
+                    </p>
+                    <div class="mt-6">
+                        <button
+                            class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-1/2 mt-5" style="margin-left: 0 !important;">Give</button>
                     </div>
-                    <p class="text-gray-600 mt-10 mb-20"> We provide orphaned and abandoned children with a loving Christian
-                        home
-                        where they receive all the love, care, protection and practical support they need to thrive.
-                        With UGX 38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.</p>
-                    <button
-                        class="mt-10 bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4 w-40">Give</button>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
 
     </div>
 @endsection

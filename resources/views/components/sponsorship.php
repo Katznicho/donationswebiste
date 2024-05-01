@@ -26,7 +26,7 @@
         <div class="p-6 rounded-full bg-blue-500 shadow-md inline-block">
             <i class="fa fa-heart text-white text-5xl lg:text-5xl rounded-full mb-2 h-10 w-12 lg:h-10 lg:w-12"></i>
         </div>
-        <p class="text-lg lg:text-lg font-bold mt-4">Pastoral Care</p>
+        <p class="text-lg lg:text-lg font-bold mt-4">Family Care</p>
         <p > Every child in our care receives regular, balanced meals that meet their nutritional needs </p>
     </div>
 </div>
