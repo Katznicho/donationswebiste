@@ -15,8 +15,8 @@
         @include('components.donatetab')
         <!-- Banner Section -->
 
-        <h1 class="text-5xl font-medium text-gray-600 mt-10 mb-4">Our Projects</h1>
-        <p class="text-lg text-gray-600 mt-1 mb-10">
+        <h1 class="text-5xl font-medium text-gray-600 mt-10 mb-4 px-5">Our Projects</h1>
+        <p class="text-lg text-gray-600 mt-1 mb-10 px-5">
             We provide orphaned and abandoned children with a loving Christian home where they receive all the love,
             care, protection and practical support they need to thrive.
         </p>
@@ -43,9 +43,12 @@
                     <p class="text-gray-600 mb-4 mt-10">We provide orphaned and abandoned children with a loving Christian home
                         where they receive all the love, care, protection and practical support they need to thrive.
                         <br>
-                        With $38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.
                     </p>
+
+                    {{-- add link with words Read More --}}
+                    <a 
+                    {{-- href="{{ route('project.show', $project['id']) }}" --}}
+                        class="text-blue-900 font-bold hover:text-blue-700" style="text-decoration: underline;">Read More</a>
                     <div class="mt-6">
                         <button
                             class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-1/2 mt-5">Give</button>
@@ -71,9 +74,12 @@
                     <p class="text-gray-600 mb-4 mt-10">We provide orphaned and abandoned children with a loving Christian home
                         where they receive all the love, care, protection and practical support they need to thrive.
                         <br>
-                        With $38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.
                     </p>
+
+                      <a 
+                    {{-- href="{{ route('project.show', $project['id']) }}" --}}
+                        class="text-blue-900 font-bold hover:text-blue-700" style="text-decoration: underline;">Read More</a>
+                  
 
                     <div class="mt-6">
                         <button
@@ -100,12 +106,16 @@
                     </div>
 
                      {{-- <p class="text-gray-600 mb-4">{{ $project['description'] }}</p> --}}
-                    <p class="text-gray-600 mb-4 mt-4">We provide orphaned and abandoned children with a loving Christian home
+                    <p class="text-gray-600 mb-4 mt-10">We provide orphaned and abandoned children with a loving Christian home
                         where they receive all the love, care, protection and practical support they need to thrive.
                         <br>
-                        With $38, we are able to rescue a child from wherever they are abandoned, feed them, provide shelter
-                        and for some in extreme health conditions, place them under intense medical program.
-                    </p>
+                        </p>
+
+
+                          <a 
+                    {{-- href="{{ route('project.show', $project['id']) }}" --}}
+                        class="text-blue-900 font-bold hover:text-blue-700" style="text-decoration: underline;">Read More</a>
+                  
                     <div class="mt-6">
                         <button
                             class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-1/2 mt-5" style="margin-left: 0 !important;">Give</button>

@@ -49,8 +49,10 @@
         </div>
 
 
-        <form action="{{ route('child.store') }}" method="POST" style="background-color: white !important;" class="p-4">
+        <form action="{{ route('child.store') }}" method="POST" style="background-color: white !important;" class="p-4 rounded-lg shadow-md">
 
+
+ <h1 class="text-center text-lg font-bold mb-4 text-7xl" style="font-size: 1em; text-align: left;">CONTACT INFORMATION</h1>
             <!-- Container to hold children cards -->
             <div id="childrenContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 
