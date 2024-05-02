@@ -10,6 +10,8 @@ use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\PaymentController;
+use App\Models\Sponsor;
+use App\Models\SponsorChild;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +57,14 @@ Route::resource('mother', MotherController::class);
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    //  dd("am here");
+    //  SponsorChild
+    $email  = auth()->user()->email;
+    $sponsor_id = Sponsor::where('email', $email)->first()->id;
+    
+    $children = SponsorChild::where('sponsor_id', $sponsor_id)->with('child')->get();
+
+    return view('dashboard', compact('children'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

@@ -12,6 +12,9 @@
                     <div>
                         Hello {{ Auth::user()->name }}
                     </div>
+                    <div>
+                        <i id="eye-icon" class="fa fa-eye cursor-pointer" aria-hidden="true" onclick="toggleTable()"></i> {{count($children)}}
+                    </div>
                     <div class="flex space-x-4"> <!-- Changed here -->
                         <!-- Add Payment Button -->
                         <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Make Payment</a>
@@ -34,4 +37,46 @@
             </div>
         </div>
     </div>
+     <!-- table pop up -->
+     <div id="table-popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
+            <div class="bg-white p-8 max-w-md rounded-lg">
+                <!-- Table content -->
+                <table class="min-w-full  border-gray-300 rounded-lg">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Second Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            <!-- Add more headers if needed -->
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                         @foreach ($children as $child) 
+
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $child->child->first_name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $child->child->second_name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                         <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Write Letter</a>
+                                </td>
+                                <!-- Add more data cells if needed -->
+                            </tr>
+                             
+                         @endforeach
+                        <!-- Add more rows of data if needed -->
+                    </tbody>
+                </table>
+                <!-- End of table content -->
+
+                <!-- Close button -->
+                <button class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="toggleTable()">Close</button>
+            </div>
+        </div>
+     <!-- table pop up-->
+     <script>
+        function toggleTable() {
+            var tablePopup = document.getElementById("table-popup");
+            tablePopup.classList.toggle("hidden");
+        }
+    </script>
 </x-app-layout>
