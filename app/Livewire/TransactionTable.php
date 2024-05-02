@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 
 class TransactionTable extends Component
 {
-   
 
     use WithPagination;
 
@@ -19,7 +18,7 @@ class TransactionTable extends Component
         //sort where user_id = auth()->id()
         $transactions = Transaction::where('user_id', auth()->id())
           ->with('child')
-        ->paginate(10); // Adjust as needed
+        ->get(); // Adjust as needed
         //$transactions = Transaction::paginate(10); // Adjust as needed
 
         return view('livewire.transaction-table', ['transactions' => $transactions]);
