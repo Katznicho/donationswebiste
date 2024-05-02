@@ -19,11 +19,11 @@ class SponsorChild extends Pivot
 
     public function sponsor()
     {
-        return $this->belongsTo(Sponsor::class);
+        return $this->belongsTo(Sponsor::class, 'sponsor_id', 'id');
     }
 
     public function child()
     {
-        return $this->belongsTo(Children::class);
+        return $this->belongsTo(Children::class, 'children_id', 'id');
     }
 }
