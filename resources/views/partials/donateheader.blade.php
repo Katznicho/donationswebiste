@@ -1,11 +1,12 @@
-<nav class="bg-blue-900 text-white p-4 md:p-6 fixed w-full z-10" id="header">
+<nav class=" text-white p-4 md:p-6 fixed w-full z-10" id="header" style="background-color: #12B0D1;">
     <div class="flex items-center justify-between">
         <div class="flex items-center">
             <!-- Make the logo a link -->
-            <a href="{{ route('home') }}">
-                <img src="https://fountainofpeace.org.ug/wp-content/uploads/2023/08/resized-strch-fop-logo.png"
-                    alt="Logo" class="h-8 w-auto mr-2">
+          
+                 <a href="{{ route('home') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-full h-100 mx-auto " class="h-8 w-auto mr-2 px-10">
             </a>
+           
             <span class="text-xl font-bold hidden md:inline"></span>
         </div>
         <div class="flex items-center space-x-4 md:space-x-6">
