@@ -317,7 +317,7 @@
                 $.each(response, function(index, country) {
                     countrySelect.append($('<option>', {
                         value: country
-                            .id, // Assuming 'id' is the primary key field
+                            .name, // Assuming 'id' is the primary key field
                         text: country.name
                     }));
                 });
