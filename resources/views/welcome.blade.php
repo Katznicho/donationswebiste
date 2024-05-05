@@ -65,4 +65,8 @@
     .tab-text {
         @apply text-black;
     }
+
+    body{
+        font-family: 'Lato', sans-serif;
+    }
 </style>
