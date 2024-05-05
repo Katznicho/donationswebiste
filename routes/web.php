@@ -36,6 +36,8 @@ Route::resource('babies', RescueBabyController::class);
 Route::resource('child', ChildController::class);
 Route::resource('donate', DonationController::class);
 
+Route::get("/donate", [DonationController::class, "index"])->name("donate");
+
 Route::get("finishPayment", [PaymentController::class, "finishPayment"])->name("finishPayment");
 Route::get("cancelPayment", [PaymentController::class, "cancelPayment"])->name("cancelPayment");
 

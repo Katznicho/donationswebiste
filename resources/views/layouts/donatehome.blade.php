@@ -9,7 +9,8 @@
 
 </head>
 <body>
-    @include('partials.donateheader')
+    {{-- @include('partials.donateheader') --}}
+    @include('partials.header')
     <div class="content">
         @yield('content')
     </div>

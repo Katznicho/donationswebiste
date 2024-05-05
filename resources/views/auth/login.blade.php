@@ -4,9 +4,9 @@
 @section('content')
 
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="mb-4 mt-20 py-20" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="mt-10">
         @csrf
 
         <!-- Email Address -->

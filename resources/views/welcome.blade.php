@@ -5,14 +5,14 @@
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
-        <div class="py-20 lg:py-20 px-7 lg:px-20">
+        <div class="py-20 lg:mt-0  lg:py-20 px-7 lg:px-20">
 
         <!-- Tabs Section -->
         @include('components.tabs')
         <!-- Tabs Section -->
 
 
-        <div class="flex space-x-5 mt-10">
+        <div class="flex space-x-5 lg:mt-20 mt-10">
         
             <h1 id="tab1" class="tab tab-active cursor-pointer font-bold text-lg text-blue-900"
                 onclick="toggleTab('tab1')">Rescue a baby</h1>
