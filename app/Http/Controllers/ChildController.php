@@ -9,10 +9,13 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Payments\Pesapal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use App\Mail\Letter;
 
 class ChildController extends Controller
 {
@@ -289,6 +292,28 @@ class ChildController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function sendLetter(Request $request){
+        try {
+             //dd($request->all());
+            $request->validate([
+                'child_id' => 'required',
+                'message' => 'required',
+                'subject' => 'required',
+            ]);
+            // dd("am here");
+            // $child = Children::findOrFail($request->child_id);
+            $names =  Auth::user()->name;
+            //code...
+            Mail::to("info@fountainofpeace.org.ug")->send(new Letter($request->subject , $request->message, $names));
+            redirect()->back()->with('success', 'Letter sent successfully');
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th);
+
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     //

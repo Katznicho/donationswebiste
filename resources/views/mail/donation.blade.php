@@ -1,7 +1,7 @@
 <x-mail::message>
-Hello, {{$name}} your donation of amount {{$amount}} with {{ config('app.name') }}  is {{$status}}
+Hello {{$name}}, your payment of {{$amount}} is {{$status}}
 
-Please login to keep track of your donations
+Please login to keep track of your payments.
 
 <x-mail::button :url="$url">
   Login
