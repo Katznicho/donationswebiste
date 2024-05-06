@@ -1,10 +1,10 @@
-<nav class="text-white p-0 md:p-6 fixed w-full z-10" id="header" style="background-color: #12B0D1;">
-    <div class="flex items-center justify-between">
-        <div class="flex items-center lg:ml-40 md:ml-10">
+<nav class="text-white p-4 md:p-2 lg:p-2 fixed w-full z-10 justify-between" id="header" style="background-color: #12B0D1;">
+    <div class="flex items-center justify-between lg:px-20 px-5">
+        <div class="flex items-center lg:ml-10 md:ml-10">
             <!-- Make the logo a link -->
             <a href="{{ route('home') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-full h-100 mx-auto"
-                    class="h-8 w-auto mr-2 px-10">
+                    class="h-8 w-auto mr-2 ">
             </a>
             <span class="text-xl font-bold hidden md:inline"></span>
         </div>
@@ -17,26 +17,26 @@
         <!-- Container for rows -->
         <div class="flex flex-col items-end space-y-4 md:space-y-0 md:space-x-6 space-between mr-10 hidden md:flex">
             <!-- First row: Icons and Donate Button -->
-            <div class="flex items-center justify-center space-x-6 mb-5"> <!-- Phone Icon -->
-                <i class="fa fa-phone"></i>+44 1494 758998
+            <div class="flex items-center justify-center space-x-6 mb-5 text-sm text-light"> <!-- Phone Icon -->
+                <i class="fa fa-phone text-sm"></i><span class="word">&nbsp;+44 1494 758998</span>
                 <!-- Email Icon -->
-                <i class="fa fa-envelope"></i>info@fountainofpeace.net
+                <i class="fa fa-envelope text-sm"></i><span class="word">&nbsp;info@fountainofpeace.net</span>
                 <!-- Social Media Icons (You can replace these with actual icons) -->
-                <div class="flex">
+                <div class="flex justify-between ">
 
-                    <i class="facebook" style="">
-                        <img src="{{ asset('images/facebook.png') }}" alt="logo" class="mr-2" width="20"
+                    <i class="facebook mr-4" style="">
+                        <img src="{{ asset('images/facebook.png') }}" alt="logo" class="" width="20"
                             height="30">
                     </i>
-                    <i class="twitter">
-                        <img src="{{ asset('images/twitter (1).png') }}" alt="logo" class="mr-2" width="20"
+                    <i class="twitter mr-2">
+                        <img src="{{ asset('images/twitter (1).png') }}" alt="logo" class="" width="20"
                             height="30">
                     </i>
-                    <i class="youtube">
+                    <i class="youtube mr-2">
                         <img src="{{ asset('images/youtube.png') }}" alt="logo" width="25" height="40"
-                            class="mt-0 mr-2">
+                            class="mt-0 ">
                     </i>
-                    <i class="instagram">
+                    <i class="instagram mr-2">
                         <img src="{{ asset('images/instagram.png') }}" alt="logo" width="20" height="20">
                     </i>
                 </div>
@@ -47,7 +47,7 @@
                 </a>
             </div>
             <!-- Second row: Tabs -->
-            <div class="flex items-center justify-center space-x-6 space-between">
+            <div class="flex items-center justify-center space-x-6 space-between ">
                 <a href="{{ route('home') }}" class="underline">Home</a>
                 <a href="{{ route('home') }}" class="hover:underline">Who We Are</a>
                 <a href="{{ route('home') }}" class="hover:underline">What we do</a>
@@ -110,6 +110,12 @@
   /* Existing styles... */
   max-height: calc(150vh - 50vh); /* Adjust header_height as needed */
   overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+.word {
+  font-size: 1rem;
+  margin-left: 0 !important;
+  font-weight: 100 !important;
 }
 </style>
 

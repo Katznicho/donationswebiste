@@ -5,7 +5,7 @@
 
     <div class="w-full lg:w-full text-center mb-8 lg:mb-0 mx-3">
     <div class="mb-4 mx-auto lg:mx-0 my-2 rounded-full">
-        <div class="p-6 rounded-full bg-blue-500 shadow-md inline-block">
+        <div class="p-6 rounded-full  shadow-md inline-block" style="background-color: #0F5078;">
             <i class="fas fa-utensils text-white text-5xl lg:text-5xl mb-2 rounded-full h-10 w-12 lg:h-10 lg:w-12"></i>
         </div>
         <p class="text-lg font-bold mt-4">Feeding</p>
@@ -14,8 +14,8 @@
 </div>
 <div class="w-full lg:w-full text-center mb-8 lg:mb-0">
     <div class="mb-4 mx-auto lg:mx-0 ">
-        <div class="p-6 rounded-full bg-blue-500 shadow-md inline-block">
-            <i class="fas fa-plus-square text-white text-5xl lg:text-5xl rounded-full mb-2 h-10 w-12 lg:h-10 lg:w-12"></i>
+        <div class="p-6 rounded-full  shadow-md inline-block" style="background-color: #0F5078;">
+            <i class="fas fa-plus-square text-white text-5xl lg:text-5xl rounded-full mb-2 h-10 w-12 lg:h-10 lg:w-12"  ></i>
         </div>
         <p class="text-lg font-bold mt-4">Medical Care</p>
         <p> Every child in our care receives regular, balanced meals that meet their nutritional needs </p>
@@ -23,7 +23,7 @@
 </div>
 <div class="w-full lg:w-full text-center mb-8 lg:mb-0">
     <div class="mb-4 mx-auto lg:mx-0 my-2">
-        <div class="p-6 rounded-full bg-blue-500 shadow-md inline-block">
+        <div class="p-6 rounded-full  shadow-md inline-block" style="background-color: #0F5078;">
             <i class="fa fa-heart text-white text-5xl lg:text-5xl rounded-full mb-2 h-10 w-12 lg:h-10 lg:w-12"></i>
         </div>
         <p class="text-lg lg:text-lg font-bold mt-4">Family Care</p>
@@ -32,7 +32,7 @@
 </div>
 <div class="w-full lg:w-full text-center">
     <div class="mb-0 mx-auto lg:mx-0 my-2">
-        <div class="p-6 rounded-full bg-blue-500 shadow-md inline-block">
+        <div class="p-6 rounded-full  shadow-md inline-block" style="background-color: #0F5078;">
             <i class="fas fa-pen text-white text-4xl lg:text-5xl rounded-full mb-2 h-8 w-10 lg:h-10 lg:w-12"></i>
         </div>
         <p class="text-lg lg:text-lg font-bold mt-4">Education</p>
