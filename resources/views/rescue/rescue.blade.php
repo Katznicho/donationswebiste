@@ -4,14 +4,15 @@
     {{-- add css --}}
 
     <div class="mx-auto bg-gray-200 py-20 lg:py-40 sm:py-10 px-10 sm:px-5 md:px-20">
-        <div class="summary bg-white-300 md:flex-row sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100" style="background-color: white !important;">
+        <div class="summary bg-white-300 md:flex-row sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100"
+            style="background-color: white !important;">
             <img class="w-20 h-20 rounded-full object-cover mx-auto mt-10 mb-0 sm:mt-5 sm:mb-0 md:mr-5 md:ml-10"
                 src="https://media.istockphoto.com/id/1446885495/photo/happy-kiss-and-hug-on-mothers-day-in-living-room-sofa-love-and-relaxing-together-in-australia.webp?b=1&s=612x612&w=0&k=20&c=com6YNsX3qRP7dYT3S-eZgr8xMO0jbEYDgU1ERMTz_Q="
                 alt="Placeholder Image">
             <div class ="text-left md:text-left: sm:text-left px-5 mt-5 ">
                 <h1 class="text-center md:text-left text-lg font-bold mb-2 text-7xl">Your contribution matters</h1>
                 <p class="text-gray-600 ">When you sponsor Bethel Babies, you help us provide the specialized care and
-                    nutrition that our babies need to give them the best possible start in life.  While Bethel baby
+                    nutrition that our babies need to give them the best possible start in life. While Bethel baby
                     sponsorship is not for a specific child, your generosity gives a bright future to all the littlest ones
                     in our care.</p>
                 <div class="flex flex-col md:flex-row items-center justify-center md:justify-start text-black-600 mt-2 mb-5">
@@ -26,11 +27,13 @@
             </div>
         </div>
 
-        <form action="{{ route('child.store') }}" method="POST" class="bg-white-300 py-4 px-4 rounded-lg shadow-md" style="background-color: white !important;">
+        <form action="{{ route('child.store') }}" method="POST" class="bg-white-300 py-4 px-4 rounded-lg shadow-md"
+            style="background-color: white !important;">
 
 
-        {{-- add heading contact information --}}
-         <h1 class="text-center text-lg font-bold mb-4 text-7xl"  style="font-size: 1em; text-align: left;">CONTACT INFORMATION</h1>
+            {{-- add heading contact information --}}
+            <h1 class="text-center text-lg font-bold mb-4 text-7xl" style="font-size: 1em; text-align: left;">CONTACT
+                INFORMATION</h1>
 
             <!-- Container to hold children cards -->
             <div id="childrenContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
@@ -110,14 +113,14 @@
                                 Email Address <span class="text-red-500">*</span></label>
                             <input type="email" id="primary_contact_email" name="primary_contact_email"
                                 placeholder="Enter primary contact email address"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="rounded-md border border-gray-300 p-2 w-full ">
                         </div>
                         <div>
                             <label for="primary_contact_phone" class="block text-gray-700 font-medium mb-2">
                                 Phone Number <span class="text-red-500">*</span></label>
                             <input type="text" id="primary_contact_phone" name="primary_contact_phone"
-                                placeholder="Enter primary contact phone number"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                placeholder="0701234567"
+                                class="rounded-md border border-gray-300 p-2 w-full sm:w-full lg:w-80">
                         </div>
                     </div>
                 </div>
@@ -151,7 +154,8 @@
                             <label for="email" class="block text-gray-700 font-medium mb-2">Phone Number <span
                                     class="text-red-500">*</span></label>
                             <input type="text" id="phone" name="phone_number"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="rounded-md border border-gray-300 p-2 w-full sm:w-full lg:w-80"
+                                placeholder="0701234567">
                         </div>
 
                         <div>
@@ -163,10 +167,10 @@
                         </div>
 
                         <div>
-                            <label for="country" class="block text-gray-700 font-medium mb-2 justify-left">Country <span
-                                    class="text-red-500">*</span></label>
+                            <label for="country" class="block text-gray-700 font-medium mb-5 mt-1 justify-left ">Country
+                                <span class="text-red-500">*</span></label>
                             <select id="country" name="country"
-                                class="rounded-md border border-gray-300 p-2 w-full mt-4">
+                                class="rounded-md border border-gray-300 p-2 w-full mt-5 select2">
                                 <option value="">Select Country</option>
                             </select>
                         </div>
@@ -200,13 +204,28 @@
     </div>
 
     <style>
+        ::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: pink;
+        }
+
         #phone {
-            width: 100%;
-            padding: 0.5rem;
+
             border: 1px solid #ccc;
             border-radius: 5px;
         }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.min.js"></script>
@@ -227,14 +246,14 @@
     <script>
         const input = document.querySelector("#phone");
         window.intlTelInput(input, {
-            initialCountry: "us",
+            initialCountry: "ug",
             strictMode: true,
             utilsScript: "/intl-tel-input/js/utils.js?1711461746916" // just for formatting/placeholders etc
         });
 
         const inputContact = document.querySelector("#primary_contact_phone");
         window.intlTelInput(inputContact, {
-            initialCountry: "us",
+            initialCountry: "ug",
             strictMode: true,
             utilsScript: "/intl-tel-input/js/utils.js?1711461746916" // just for formatting/placeholders etc
         });

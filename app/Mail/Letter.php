@@ -9,20 +9,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AccountCreation extends Mailable
+class Letter extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public  $name;
-    public $password;
     /**
      * Create a new message instance.
      */
-    public function __construct($name, $password)
+    public $subjectEmail;
+    public $message;
+    public $name;
+    public function __construct($subjectEmail, $message, $name)
     {
         //
+        $this->subjectEmail = $subjectEmail;
+        $this->message = $message;
         $this->name = $name;
-        $this->password = $password;
     }
 
     /**
@@ -31,7 +33,8 @@ class AccountCreation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Thank you',
+            subject: $this->subjectEmail,
+
         );
     }
 
@@ -41,11 +44,11 @@ class AccountCreation extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.account',
+            markdown: 'mail.letter',
             with: [
                 'name' => $this->name,
-                'password' => $this->password,
-                'url' => "https://dummy.fountainofpeace.org.ug/login"
+                'message' => $this->message,
+                
             ]
         );
     }

@@ -6,9 +6,9 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <div class="mx-auto py-20 lg:py-40 sm:py-10 px-10 sm:px-5 md:px-20 bg-gray-200">
-        <div
-            class="bg-white-300 summary  md:flex-row 
-        sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100" style="background-color: white !important;">
+        <div class="bg-white-300 summary  md:flex-row 
+        sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100"
+            style="background-color: white !important;">
             <img class="w-20 h-20 rounded-full object-cover mx-auto mt-5 mb-0 sm:mt-5 sm:mb-0 md:mr-5 md:ml-10"
                 src="{{ $child->profile_picture }}" alt="Placeholder Image">
 
@@ -49,10 +49,12 @@
         </div>
 
 
-        <form action="{{ route('child.store') }}" method="POST" style="background-color: white !important;" class="p-4 rounded-lg shadow-md">
+        <form action="{{ route('child.store') }}" method="POST" style="background-color: white !important;"
+            class="p-4 rounded-lg shadow-md">
 
 
- <h1 class="text-center text-lg font-bold mb-4 text-7xl" style="font-size: 1em; text-align: left;">CONTACT INFORMATION</h1>
+            <h1 class="text-center text-lg font-bold mb-4 text-7xl" style="font-size: 1em; text-align: left;">CONTACT
+                INFORMATION</h1>
             <!-- Container to hold children cards -->
             <div id="childrenContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 
@@ -135,8 +137,8 @@
                             <label for="primary_contact_phone" class="block text-gray-700 font-medium mb-2">
                                 Phone Number <span class="text-red-500">*</span></label>
                             <input type="text" id="primary_contact_phone" name="primary_contact_phone"
-                                placeholder="Enter primary contact phone number"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                placeholder="0701234567"
+                                class="rounded-md border border-gray-300 p-2 w-full sm:w-full lg:w-80">
                         </div>
                     </div>
                 </div>
@@ -167,9 +169,9 @@
                         <div>
                             <label for="email" class="block text-gray-700 font-medium mb-2">Phone Number <span
                                     class="text-red-500">*</span></label>
-                            <input type="text" id="phone_number" name="phone_number"
-                                placeholder="Enter your phone number"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                            <input type="text" id="phone" name="phone_number"
+                                class="rounded-md border border-gray-300 p-2 w-full sm:w-full lg:w-80"
+                                placeholder="0701234567">
                         </div>
 
                         <div>
@@ -179,18 +181,12 @@
                                 placeholder="Enter your physical address"
                                 class="rounded-md border border-gray-300 p-2 w-full mt-4"> <!-- Added mt-4 class -->
                         </div>
-                        <div>
-                            <label for="zip_code" class="block text-gray-700 font-medium mb-2">Zip/Postal Code <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" id="zip_code" name="zip_code"
-                                placeholder="Enter your zip/postal code"
-                                class="rounded-md border border-gray-300 p-2 w-full mt-4"> <!-- Added mt-4 class -->
-                        </div>
+
                         <div>
                             <label for="country" class="block text-gray-700 font-medium mb-2 justify-left">Country <span
                                     class="text-red-500">*</span></label>
                             <select id="country" name="country"
-                                class="rounded-md border border-gray-300 p-2 w-full mt-4">
+                                class="rounded-md border border-gray-300 p-2 w-full mt-4 select2">
                                 <option value="">Select Country</option>
                             </select>
                         </div>
@@ -221,6 +217,127 @@
         </form>
     </div>
 
+ 
+    <style>
+        ::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: pink;
+        }
+
+        #phone {
+
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput-jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput-jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/utils.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/utils.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@20.1.0/build/css/intlTelInput.css">
+
+
+
+
+
+    <script>
+        const input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+            initialCountry: "ug",
+            strictMode: true,
+            utilsScript: "/intl-tel-input/js/utils.js?1711461746916" // just for formatting/placeholders etc
+        });
+
+        const inputContact = document.querySelector("#primary_contact_phone");
+        window.intlTelInput(inputContact, {
+            initialCountry: "ug",
+            strictMode: true,
+            utilsScript: "/intl-tel-input/js/utils.js?1711461746916" // just for formatting/placeholders etc
+        });
+
+        function showConfirmSponsorMore() {
+            Swal.fire({
+                title: 'Thank you for your sponsorship!',
+                text: 'Choose preffered way to support more children.',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3a57e8', // Tailor to your button color scheme
+                cancelButtonColor: '#95a5a6', // Tailor to your button color scheme
+                confirmButtonText: 'Choose For Me',
+                cancelButtonText: 'Choose for Myself'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form (assuming the form has an ID of 'sponsorForm')
+                    document.getElementById('sponsorForm').submit();
+                } else {
+                    // Redirect to the page where you want to choose for the user
+                    window.location.href = '/child';
+                }
+            });
+        }
+    </script>   
+
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    $(document).ready(function() {
+        // Fetch countries using AJAX
+        $.ajax({
+            url: '{{ route('countries.fetchAndStore') }}', // Update with your route URL
+            type: 'GET',
+            success: function(response) {
+                var countrySelect = $('#country');
+
+                // Populate select dropdown with country names
+                $.each(response, function(index, country) {
+                    countrySelect.append($('<option>', {
+                        value: country
+                            .name, // Assuming 'id' is the primary key field
+                        text: country.name
+                    }));
+                });
+
+                // Initialize Select2 with searchable option
+                countrySelect.select2({
+                    placeholder: "Select Country", // Optional placeholder text
+                    minimumInputLength: 2, // Optional minimum characters to trigger search
+
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.error(error);
+            }
+        });
+
+    });
+</script>
 
 
     <script>
@@ -424,12 +541,7 @@
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -520,4 +632,33 @@
             confirmButtonColor: "#3a57e8"
         });
     @endif
+</script>
+
+
+
+
+
+<script>
+  
+
+    function showConfirmSponsorMore() {
+        Swal.fire({
+            title: 'Thank you for your sponsorship!',
+            text: 'Choose preffered way to support more children.',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3a57e8', // Tailor to your button color scheme
+            cancelButtonColor: '#95a5a6', // Tailor to your button color scheme
+            confirmButtonText: 'Choose For Me',
+            cancelButtonText: 'Choose for Myself'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form (assuming the form has an ID of 'sponsorForm')
+                document.getElementById('sponsorForm').submit();
+            } else {
+                // Redirect to the page where you want to choose for the user
+                window.location.href = '/child';
+            }
+        });
+    }
 </script>
