@@ -69,6 +69,8 @@ Route::get('/dashboard', function () {
     return view('dashboard', compact('children'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post("sendLetter", [ChildController::class, "sendLetter"])->name("sendLetter");
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

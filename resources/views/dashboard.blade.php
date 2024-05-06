@@ -64,10 +64,9 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $child->child->first_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $child->child->second_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <i id="email-icon" class="fa fa-envelope cursor-pointer" aria-hidden="true"
-                                    onclick="openLetterForm('{{ $child->child->first_name }} {{ $child->child->second_name }}')"></i>
-
-                            </td>
+    <i id="email-icon" class="fa fa-envelope cursor-pointer" aria-hidden="true"
+        onclick="openLetterForm('{{$child->child->first_name}} {{$child->child->second_name}}', '{{$child->child->id}}')"></i>
+</td>
                             <!-- Add more data cells if needed -->
                         </tr>
                     @endforeach
@@ -88,17 +87,19 @@
     <div id="letter-form-popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
         <div class="bg-white p-8 max-w-md rounded-lg">
             <h2 class="text-xl font-bold mb-4">Write Letter to <span id="child-name"></span></h2>
-            <form  method="POST">
+            <form  action="{{ route('sendLetter') }}" method="POST">
                 @csrf
-                <input type="hidden" id="child-name-input" name="child_name">
+                <input type="hidden" id="child-id" name="child_id">
+                <input type="hidden" id="child-subject" name="subject">
                 <div class="mb-4">
                     <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-                    <input type="text" name="subject" id="subject"
+                    <input type="text" name="subject" id="subject" disabled
+                     value="{{ old('subject') }}"
                         class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
                 <div class="mb-4">
-                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" id="description" rows="4"
+                    <label for="description" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea name="message" id="description" rows="4"
                         class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                 </div>
                 <button type="submit"
@@ -117,10 +118,13 @@
         }
 
         //form functions
-        function openLetterForm(childName) {
+        function openLetterForm(childName, childId) {
+            console.log(childName, childId);
             // Set child name in the form
             document.getElementById("child-name").innerText = childName;
-            document.getElementById("child-name-input").value = childName;
+            document.getElementById("child-id").value = childId;
+            document.getElementById("child-subject").value = "Dear " + childName;
+            document.getElementById("subject").value = "Dear " + childName;
             // Show the popup form
             document.getElementById("letter-form-popup").classList.remove("hidden");
         }

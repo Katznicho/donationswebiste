@@ -1,8 +1,10 @@
 <x-mail::message>
 
-Hello, {{$name}} your account with {{ config('app.name') }}
+Hello {{$name}}, your account with {{ config('app.name') }} has been successfully created.
 
-You can use {{$password }} to login into {{ config('app.name') }}
+Welcome to the family.
+
+You can use {{$password }} to login into your account.
 
 <x-mail::button :url="$url">
   Login
