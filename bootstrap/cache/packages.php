@@ -45,13 +45,6 @@
       0 => 'Livewire\\Volt\\VoltServiceProvider',
     ),
   ),
-  'log1x/laravel-webfonts' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Log1x\\LaravelWebfonts\\WebfontsServiceProvider',
-    ),
-  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
