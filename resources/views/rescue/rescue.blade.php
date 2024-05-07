@@ -10,11 +10,10 @@
                 src="https://media.istockphoto.com/id/1446885495/photo/happy-kiss-and-hug-on-mothers-day-in-living-room-sofa-love-and-relaxing-together-in-australia.webp?b=1&s=612x612&w=0&k=20&c=com6YNsX3qRP7dYT3S-eZgr8xMO0jbEYDgU1ERMTz_Q="
                 alt="Placeholder Image">
             <div class ="text-left md:text-left: sm:text-left px-5 mt-5 ">
-                <h1 class="text-center md:text-left text-lg font-bold mb-2 text-7xl">Your contribution matters</h1>
-                <p class="text-gray-600 ">When you sponsor Bethel Babies, you help us provide the specialized care and
-                    nutrition that our babies need to give them the best possible start in life. While Bethel baby
-                    sponsorship is not for a specific child, your generosity gives a bright future to all the littlest ones
-                    in our care.</p>
+                <h1 class="text-center md:text-left text-lg font-bold mb-2 text-7xl">Bethel Babies Homes</h1>
+                <p class="text-gray-600 ">We are able to rescue children from wherever they are abandoned, feed them, provide shelter and for some in extreme health conditions, place them under intense medical care. 
+Although Bethel Babies Home sponsorship does not target a particular child, your generosity ensures a promising future for every infant under our guardianship.
+</p>
                 <div class="flex flex-col md:flex-row items-center justify-center md:justify-start text-black-600 mt-2 mb-5">
                     <!-- First Checkbox -->
                     {{-- <input type="radio" id="monthlySubscription" class="mr-3 mb-3 md:mb-0 md:mr-5" name="subscriptionType"> --}}

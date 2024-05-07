@@ -3,13 +3,10 @@
         <div class="lg:w-1/2 lg:mr-4 order-2 lg:order-1 mt-10 lg:mt-0">
             <h1 class="title text-7xl font-bold text-black mb-4">Raise a leader.</h1>
             <p class="text-lg text-gray-600 mt-1 mb-10">
-                We provide orphaned and abandoned children with a loving Christian home
-                where they receive all the love, care, protection and practical support they need to thrive.
+               We are dedicated to providing care and support to our children who have faced unimaginable challenges in their young lives. Every day, we witness the transformative power of love in shaping the futures of these remarkable children.
             </p>
             <p class="text-lg text-gray-600 mt-10">
-                With $38, we are able to rescue a child from wherever they are abandoned,
-                feed them, provide shelter and for some in extreme health conditions, place them under intense medical
-                program.
+                With $33, you can make a tangible impact on the life of the children in our care. Your monthly contribution will provide education, meals, healthcare and family care.
             </p>
             <div class="mt-10">
                 <a class="bg-blue-900 text-white px-4 py-2 rounded-md my-5 " href="#cardsSection">Sponsor</a>

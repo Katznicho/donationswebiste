@@ -17,8 +17,8 @@
         <div class="p-6 rounded-full  shadow-md inline-block" style="background-color: #0F5078;">
             <i class="fas fa-plus-square text-white text-5xl lg:text-5xl rounded-full mb-2 h-10 w-12 lg:h-10 lg:w-12"  ></i>
         </div>
-        <p class="text-lg font-bold mt-4">Medical Care</p>
-        <p> Every child in our care receives regular, balanced meals that meet their nutritional needs </p>
+        <p class="text-lg font-bold mt-4">Health Care</p>
+        <p> Access to healthcare services, including routine check-ups, vaccinations, and treatment for illnesses. </p>
     </div>
 </div>
 <div class="w-full lg:w-full text-center mb-8 lg:mb-0">
@@ -27,7 +27,7 @@
             <i class="fa fa-heart text-white text-5xl lg:text-5xl rounded-full mb-2 h-10 w-12 lg:h-10 lg:w-12"></i>
         </div>
         <p class="text-lg lg:text-lg font-bold mt-4">Family Care</p>
-        <p > Every child in our care receives regular, balanced meals that meet their nutritional needs </p>
+        <p > An environment where they can grow and thrive physically, emotionally, and spiritually. </p>
     </div>
 </div>
 <div class="w-full lg:w-full text-center">
@@ -36,7 +36,7 @@
             <i class="fas fa-pen text-white text-4xl lg:text-5xl rounded-full mb-2 h-8 w-10 lg:h-10 lg:w-12"></i>
         </div>
         <p class="text-lg lg:text-lg font-bold mt-4">Education</p>
-        <p> Every child in our care receives regular, balanced meals that meet their nutritional needs </p>
+        <p> School fees, uniforms, books, and other educational supplies, alongside cocurricular activities that promote our children’s development. </p>
     </div>
 </div>
 
