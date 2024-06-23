@@ -141,124 +141,248 @@ class ChildController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         $validatedData = [];
+    //         $is_individual = $request->input('is_individual');
+
+    //         if ($is_individual == "is_individual") {
+    //             $validatedData = $request->validate([
+    //                 'first_name' => 'required|string|max:255',
+    //                 'last_name' => 'required|string|max:255',
+    //                 'email' => 'required|email|max:255',
+    //                 'phone_number' => 'required|string|max:255',
+    //                 'country' => 'required|string|max:255',
+    //             ]);
+    //         } else {
+    //             $validatedData = $request->validate([
+    //                 'organization_name' => 'required|string|max:255',
+    //                 'organization_type' => 'required|string|max:255',
+    //                 'primary_contact_first_name' => 'required|string|max:255',
+    //                 'primary_contact_last_name' => 'required|string|max:255',
+    //                 'primary_contact_email' => 'required|email|max:255',
+    //                 'primary_contact_phone' => 'required|string|max:255',
+    //             ]);
+    //         }
+
+    //         $sponsorData = [
+    //             'first_name' => $is_individual == "is_individual" ? $request->input('first_name') : $request->input('primary_contact_first_name'),
+    //             'last_name' => $is_individual == "is_individual" ? $request->input('last_name') : $request->input('primary_contact_last_name'),
+    //             'phone_number' => $is_individual == "is_individual" ? $request->input('phone_number') : $request->input('primary_contact_phone'),
+    //             'address' => $request->input('address', null),
+    //             'city' => $request->input('city', null),
+    //             'state' => $request->input('state', null),
+    //             'country' => $request->input('country', null),
+    //             'postal_code' => $request->input('postal_code', null),
+    //             'sponsor_identifier' => Str::random(10),
+    //             'type' => $is_individual == "is_individual" ? "individual" : "organization",
+    //             'organization_name' => $request->input('organization_name', null),
+    //             'organization_type' => $request->input('organization_type', null),
+    //         ];
+    //         // dd($sponsorData);
+
+    //         // Check if the sponsor with the provided email already exists
+    //         $sponsor = Sponsor::where('email', $request->input('email'))->first();
+    //         if (!$sponsor) {
+    //             $sponsor = Sponsor::create($sponsorData);
+    //         }
+
+    //         // Check if the user with the provided email already exists
+    //         $user = User::where('email', $request->input('email'))->first();
+    //         if (!$user) {
+    //             $password = Str::random(8);
+    //             $user = User::create([
+    //                 'email' => $request->input('email'),
+    //                 'name' => $sponsorData['first_name'] . ' ' . $sponsorData['last_name'],
+    //                 'password' => $password
+    //             ]);
+
+    //             Mail::to($request->input('email'))->send(new AccountCreation($sponsorData['first_name'], $password));
+    //         } else {
+    //         }
+
+    //         $more_children =  $request->child_ids;
+    //         $amount = 500;
+    //         $total_amount = $amount;
+    //         $child_ids = null;
+    //         $status = config("status.payment_status.pending");
+    //         $customer_email = $request->input('email');
+    //         $customer_id = $sponsor->id;
+    //         $phone_number = $is_individual == "is_individual" ? $request->input('phone_number') : $request->input('primary_contact_phone');
+    //         $reference = Str::uuid();
+
+    //         $description = "Payment for  child sponsorhip";
+
+
+    //         if (empty($more_children)) {
+    //             // dd("empty");
+    //         } else {
+    //             $ids = $more_children[0]; // Assuming $array is your array with the IDs
+    //             $extractedIds = explode(',', $ids);
+    //             $child_ids = $extractedIds;
+    //             $total_amount += 500 * count($extractedIds);
+    //         }
+
+
+    //         Transaction::create([
+    //             'reference' => $reference,
+    //             'amount' => $amount,
+    //             'sponsor_id' => $sponsor->id,
+    //             'status' => $status,
+    //             'description' => $description,
+    //             'phone_number' => $phone_number,
+    //             'payment_mode' => "pesapal",
+    //             'OrderNotificationType' => "pesapal",
+    //             'order_tracking_id' => $reference,
+    //             'type' => "SponsorChild",
+    //             'payment_method' => "Pesapal",
+    //             'user_id' => $user->id,
+    //             'child_id' => $request->child_id,
+    //             'child_ids' => json_encode($child_ids)
+    //         ]);
+
+
+
+    //         $callback_url = "https://dummy.fountainofpeace.org.ug/finishPayment";
+    //         $cancel_url = "https://dummy.fountainofpeace.org.ug/cancelPayment";
+
+    //         $res = Pesapal::orderProcess($reference, $total_amount, $phone_number, $description, $callback_url, $sponsorData['first_name'], $sponsorData['last_name'], $customer_email, $customer_id, $cancel_url);
+
+    //         if ($res->success) {
+    //             return redirect($res->message->redirect_url);
+    //         } else {
+    //             return redirect()->back()->with('error', 'Payment Failed please try again');
+    //         }
+    //     } catch (\Throwable $e) {
+    //         dd($e->getMessage());
+    //         return redirect()->back()->with("error", $e->getMessage());
+    //     }
+    // }
+
     public function store(Request $request)
-    {
-        try {
-            $validatedData = [];
-            $is_individual = $request->input('is_individual');
+{
+    try {
+        $validatedData = [];
+        $is_individual = $request->input('is_individual');
 
-            if ($is_individual == "is_individual") {
-                $validatedData = $request->validate([
-                    'first_name' => 'required|string|max:255',
-                    'last_name' => 'required|string|max:255',
-                    'email' => 'required|email|max:255',
-                    'phone_number' => 'required|string|max:255',
-                    'country' => 'required|string|max:255',
-                ]);
-            } else {
-                $validatedData = $request->validate([
-                    'organization_name' => 'required|string|max:255',
-                    'organization_type' => 'required|string|max:255',
-                    'primary_contact_first_name' => 'required|string|max:255',
-                    'primary_contact_last_name' => 'required|string|max:255',
-                    'primary_contact_email' => 'required|email|max:255',
-                    'primary_contact_phone' => 'required|string|max:255',
-                ]);
-            }
+        if ($is_individual == "is_individual") {
+            $validatedData = $request->validate([
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'phone_number' => 'required|string|max:255',
+                'country' => 'required|string|max:255',
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'organization_name' => 'required|string|max:255',
+                'organization_type' => 'required|string|max:255',
+                'primary_contact_first_name' => 'required|string|max:255',
+                'primary_contact_last_name' => 'required|string|max:255',
+                'primary_contact_email' => 'required|email|max:255',
+                'primary_contact_phone' => 'required|string|max:255',
+            ]);
+        }
 
-            $sponsorData = [
-                'first_name' => $is_individual == "is_individual" ? $request->input('first_name') : $request->input('primary_contact_first_name'),
-                'last_name' => $is_individual == "is_individual" ? $request->input('last_name') : $request->input('primary_contact_last_name'),
-                'phone_number' => $is_individual == "is_individual" ? $request->input('phone_number') : $request->input('primary_contact_phone'),
-                'address' => $request->input('address', null),
-                'city' => $request->input('city', null),
-                'state' => $request->input('state', null),
-                'country' => $request->input('country', null),
-                'postal_code' => $request->input('postal_code', null),
-                'sponsor_identifier' => Str::random(10),
-                'type' => $is_individual == "is_individual" ? "individual" : "organization",
-                'organization_name' => $request->input('organization_name', null),
-                'organization_type' => $request->input('organization_type', null),
-            ];
-            // dd($sponsorData);
+        $sponsorData = [
+            'first_name' => $is_individual == "is_individual" ? $request->input('first_name') : $request->input('primary_contact_first_name'),
+            'last_name' => $is_individual == "is_individual" ? $request->input('last_name') : $request->input('primary_contact_last_name'),
+            'phone_number' => $is_individual == "is_individual" ? $request->input('phone_number') : $request->input('primary_contact_phone'),
+            'address' => $request->input('address', null),
+            'city' => $request->input('city', null),
+            'state' => $request->input('state', null),
+            'country' => $request->input('country', null),
+            'postal_code' => $request->input('postal_code', null),
+            'sponsor_identifier' => Str::random(10),
+            'type' => $is_individual == "is_individual" ? "individual" : "organization",
+            'organization_name' => $request->input('organization_name', null),
+            'organization_type' => $request->input('organization_type', null),
+        ];
 
-            // Check if the sponsor with the provided email already exists
-            $sponsor = Sponsor::where('email', $request->input('email'))->first();
-            if (!$sponsor) {
-                $sponsor = Sponsor::create($sponsorData);
-            }
+        // Check if the sponsor with the provided email already exists
+        $sponsor = Sponsor::where('email', $request->input('email'))->first();
+        if (!$sponsor) {
+            $sponsor = Sponsor::create($sponsorData);
+        }
 
-            // Check if the user with the provided email already exists
-            $user = User::where('email', $request->input('email'))->first();
-            if (!$user) {
-                $password = Str::random(8);
-                $user = User::create([
-                    'email' => $request->input('email'),
-                    'name' => $sponsorData['first_name'] . ' ' . $sponsorData['last_name'],
-                    'password' => $password
-                ]);
-
-                Mail::to($request->input('email'))->send(new AccountCreation($sponsorData['first_name'], $password));
-            } else {
-            }
-
-            $more_children =  $request->child_ids;
-            $amount = 500;
-            $total_amount = $amount;
-            $child_ids = null;
-            $status = config("status.payment_status.pending");
-            $customer_email = $request->input('email');
-            $customer_id = $sponsor->id;
-            $phone_number = $is_individual == "is_individual" ? $request->input('phone_number') : $request->input('primary_contact_phone');
-            $reference = Str::uuid();
-
-            $description = "Payment for  child sponsorhip";
-
-
-            if (empty($more_children)) {
-                // dd("empty");
-            } else {
-                $ids = $more_children[0]; // Assuming $array is your array with the IDs
-                $extractedIds = explode(',', $ids);
-                $child_ids = $extractedIds;
-                $total_amount += 500 * count($extractedIds);
-            }
-
-
-            Transaction::create([
-                'reference' => $reference,
-                'amount' => $amount,
-                'sponsor_id' => $sponsor->id,
-                'status' => $status,
-                'description' => $description,
-                'phone_number' => $phone_number,
-                'payment_mode' => "pesapal",
-                'OrderNotificationType' => "pesapal",
-                'order_tracking_id' => $reference,
-                'type' => "SponsorChild",
-                'payment_method' => "Pesapal",
-                'user_id' => $user->id,
-                'child_id' => $request->child_id,
-                'child_ids' => json_encode($child_ids)
+        // Check if the user with the provided email already exists
+        $user = User::where('email', $request->input('email'))->first();
+        if (!$user) {
+            $password = Str::random(8);
+            $user = User::create([
+                'email' => $request->input('email'),
+                'name' => $sponsorData['first_name'] . ' ' . $sponsorData['last_name'],
+                'password' => $password
             ]);
 
-
-
-            $callback_url = "https://dummy.fountainofpeace.org.ug/finishPayment";
-            $cancel_url = "https://dummy.fountainofpeace.org.ug/cancelPayment";
-
-            $res = Pesapal::orderProcess($reference, $total_amount, $phone_number, $description, $callback_url, $sponsorData['first_name'], $sponsorData['last_name'], $customer_email, $customer_id, $cancel_url);
-
-            if ($res->success) {
-                return redirect($res->message->redirect_url);
-            } else {
-                return redirect()->back()->with('error', 'Payment Failed please try again');
-            }
-        } catch (\Throwable $e) {
-            dd($e->getMessage());
-            return redirect()->back()->with("error", $e->getMessage());
+            Mail::to($request->input('email'))->send(new AccountCreation($sponsorData['first_name'], $password));
         }
+
+        $more_children =  $request->child_ids;
+        $amount = 500;
+        $total_amount = $amount;
+        $child_ids = null;
+        $status = config("status.payment_status.pending");
+        $customer_email = $request->input('email');
+        $customer_id = $sponsor->id;
+        $phone_number = $is_individual == "is_individual" ? $request->input('phone_number') : $request->input('primary_contact_phone');
+        $reference = Str::uuid();
+
+        $description = "Payment for child sponsorship";
+
+        if (!empty($more_children)) {
+            $ids = $more_children[0]; // Assuming $array is your array with the IDs
+            $extractedIds = explode(',', $ids);
+            $child_ids = $extractedIds;
+            $total_amount += 500 * count($extractedIds);
+        }
+
+        Transaction::create([
+            'reference' => $reference,
+            'amount' => $amount,
+            'sponsor_id' => $sponsor->id,
+            'status' => $status,
+            'description' => $description,
+            'phone_number' => $phone_number,
+            'payment_mode' => "pesapal",
+            'OrderNotificationType' => "pesapal",
+            'order_tracking_id' => $reference,
+            'type' => "SponsorChild",
+            'payment_method' => "Pesapal",
+            'user_id' => $user->id,
+            'child_id' => $request->child_id,
+            'child_ids' => json_encode($child_ids)
+        ]);
+
+        $response = [
+            'transactionReference' => $reference,
+            'orderId' => $reference,
+            'amount' => $total_amount,
+            'dateOfPayment' => now()->toISOString(),
+            'redirectUrl' => "http://localhost:3000/services/parking/interswitch-payment-summary?paymentType=pass&serviceType=parking",
+            'narration' => "Parking Pass Payment",
+            'expiryTime' => now()->addMinutes(5)->toISOString(),
+            'customerId' => $customer_id,
+            'customerFirstName' => $sponsorData['first_name'],
+            'customerSecondName' => $sponsorData['last_name'],
+            'customerEmail' => $customer_email,
+            'customerMobile' => $phone_number,
+            'merchantCode' => "ISWKEN0001",
+            'terminalType' => "WEB",
+            'domain' => "ISWKE",
+            'currencyCode'
+        ];
+
+        return response()->json($response);
     }
+    catch (\Exception $e) {
+        // Handle the exception here
+        // You can log the error, return a specific response, etc.
+        // For example:
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 
     /**
      * Display the specified resource.

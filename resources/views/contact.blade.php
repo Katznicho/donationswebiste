@@ -5,11 +5,10 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <div class="mx-auto py-20 lg:py-40 sm:py-10 px-10 sm:px-5 md:px-20 bg-gray-200">
-        <div class="bg-white-300 summary  md:flex-row 
-        sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto h-100"
+    <div class="px-10 py-20 mx-auto bg-gray-200 lg:py-40 sm:py-10 sm:px-5 md:px-20">
+        <div class="flex flex-col mb-8 border border-blue-300 rounded-lg shadow-md bg-white-300 summary md:flex-row sm:flex-row sm:h-auto md:h-auto h-100"
             style="background-color: white !important;">
-            <img class="w-20 h-20 rounded-full object-cover mx-auto mt-5 mb-0 sm:mt-5 sm:mb-0 md:mr-5 md:ml-10"
+            <img class="object-cover w-20 h-20 mx-auto mt-5 mb-0 rounded-full sm:mt-5 sm:mb-0 md:mr-5 md:ml-10"
                 src="{{ $child->profile_picture }}" alt="Placeholder Image">
 
             @php
@@ -20,7 +19,7 @@
             @endphp
 
             <div class="text-center md:text-left ">
-                <h3 class="font-bold mb-0 text-xl mt-5 text-blue-900">{{ $child->first_name }} {{ $child->second_name }}
+                <h3 class="mt-5 mb-0 text-xl font-bold text-blue-900">{{ $child->first_name }} {{ $child->second_name }}
                     <span class="ageup">{{ $age }} yrs</span>
                 </h3>
 
@@ -32,14 +31,14 @@
                     $formatted_dob = $dob->format('jS F Y'); // 'j' for day without leading zeros, 'S' for suffix, 'F' for full month name
                 @endphp
 
-                <p class="text-black-600 mt-0">Birthday: {{ $formatted_dob }}</p>
+                <p class="mt-0 text-black-600">Birthday: {{ $formatted_dob }}</p>
 
                 <div
-                    class="flex flex-col md:flex-row items-center justify-center md:justify-start text-black-600 mt-5 mb-5">
+                    class="flex flex-col items-center justify-center mt-5 mb-5 md:flex-row md:justify-start text-black-600">
                     <!-- First Checkbox -->
-                    {{-- <input type="radio" id="monthlySubscription" class="mr-3 mb-3 md:mb-0 md:mr-5"
+                    {{-- <input type="radio" id="monthlySubscription" class="mb-3 mr-3 md:mb-0 md:mr-5"
                         name="subscriptionType"> --}}
-                    <label for="monthlySubscription" class="text-black-600 mr-2"> $35/mth</label>
+                    <label for="monthlySubscription" class="mr-2 text-black-600"> $35/mth</label>
 
                     <!-- Second Checkbox (Below for smaller screens) -->
                     {{-- <input type="radio" id="annualSubscription" name="subscriptionType" class="mr-3">
@@ -49,24 +48,24 @@
         </div>
 
 
-        <form action="{{ route('child.store') }}" method="POST" style="background-color: white !important;"
+        <form id="myForm" method="POST" style="background-color: white !important;"
             class="p-4 rounded-lg shadow-md">
 
 
-            <h1 class="text-center text-lg font-bold mb-4 text-7xl" style="font-size: 1em; text-align: left;">CONTACT
+            <h1 class="mb-4 text-lg font-bold text-center text-7xl" style="font-size: 1em; text-align: left;">CONTACT
                 INFORMATION</h1>
             <!-- Container to hold children cards -->
-            <div id="childrenContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+            <div id="childrenContainer" class="grid grid-cols-1 gap-4 sm:grid-cols-2"></div>
 
             @csrf
             <div class="flex items-center mb-4">
-                <label for="toggle" class="inline-flex items-center cursor-pointer mr-2 text-red-50">
+                <label for="toggle" class="inline-flex items-center mr-2 cursor-pointer text-red-50">
                     <span class="sr-only">Toggle</span>
                     <input type="checkbox" id="toggle" name="toggle" value="individual" class="hidden"
                         onclick="handleClick()">
                     <div class="relative">
                         <div class="w-10 h-6 bg-gray-400 rounded-full shadow-inner"></div>
-                        <div class="dot absolute w-6 h-6 bg-white rounded-full shadow-md border border-gray-300 transition transform left-0 top-0"
+                        <div class="absolute top-0 left-0 w-6 h-6 transition transform bg-white border border-gray-300 rounded-full shadow-md dot"
                             id="toggled"></div>
                     </div>
                     <span id="toggle-label" class="ml-2 text-gray-700">Organization</span>
@@ -80,18 +79,18 @@
                 <input type="hidden" id="child_id" name="child_id" value="{{ $child->id }}" />
                 <input type="hidden" id="more_sponsor" name="child_ids[]" value="" />
                 <div class="p-4 mb-8" id="organization-fields" style="display: none;">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label for="organization_name" class="block text-gray-700 font-medium mb-2">Organization Name
+                            <label for="organization_name" class="block mb-2 font-medium text-gray-700">Organization Name
                                 <span class="text-red-500">*</span></label>
                             <input type="text" id="organization_name" name="organization_name"
-                                placeholder="Enter organization name" class="rounded-md border border-gray-300 p-2 w-full">
+                                placeholder="Enter organization name" class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="organization_type" class="block text-gray-700 font-medium mb-2">Organization Type
+                            <label for="organization_type" class="block mb-2 font-medium text-gray-700">Organization Type
                                 <span class="text-red-500">*</span></label>
                             <select id="organization_type" name="organization_type"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                                 <option value="" selected disabled>Select Organization Type</option>
                                 <option value="Church">Church</option>
                                 <option value="School">School</option>
@@ -106,39 +105,39 @@
                 <div class="p-4 mb-8" id="primary-fields" style="display: none;">
 
 
-                    <h3 class="inline-flex text-gray-900 font-bold text-lg mb-2 mt-5 mr-100">Primary Contact Information
+                    <h3 class="inline-flex mt-5 mb-2 text-lg font-bold text-gray-900 mr-100">Primary Contact Information
                     </h3>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
 
                         <div>
-                            <label for="primary_contact_first_name" class="block text-gray-700 font-medium mb-2">First Name
+                            <label for="primary_contact_first_name" class="block mb-2 font-medium text-gray-700">First Name
                                 <span class="text-red-500">*</span></label>
                             <input type="text" id="primary_contact_first_name" name="primary_contact_first_name"
                                 placeholder="Enter primary contact first name"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="primary_contact_last_name" class="block text-gray-700 font-medium mb-2">Last Name
+                            <label for="primary_contact_last_name" class="block mb-2 font-medium text-gray-700">Last Name
                                 <span class="text-red-500">*</span></label>
                             <input type="text" id="primary_contact_last_name" name="primary_contact_last_name"
                                 placeholder="Enter primary contact last name"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="primary_contact_email" class="block text-gray-700 font-medium mb-2">
+                            <label for="primary_contact_email" class="block mb-2 font-medium text-gray-700">
                                 Email Address <span class="text-red-500">*</span></label>
                             <input type="email" id="primary_contact_email" name="primary_contact_email"
                                 placeholder="Enter primary contact email address"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="primary_contact_phone" class="block text-gray-700 font-medium mb-2">
+                            <label for="primary_contact_phone" class="block mb-2 font-medium text-gray-700">
                                 Phone Number <span class="text-red-500">*</span></label>
                             <input type="text" id="primary_contact_phone" name="primary_contact_phone"
                                 placeholder="0701234567"
-                                class="rounded-md border border-gray-300 p-2 w-full sm:w-full lg:w-80">
+                                class="w-full p-2 border border-gray-300 rounded-md sm:w-full lg:w-80">
                         </div>
                     </div>
                 </div>
@@ -147,46 +146,46 @@
 
                 <!-- Individual Form -->
                 <div class="p-4 mb-8" id="individual-fields">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label for="first_name" class="block text-gray-700 font-medium mb-2">First Name <span
+                            <label for="first_name" class="block mb-2 font-medium text-gray-700">First Name <span
                                     class="text-red-500">*</span></label>
                             <input type="text" id="first_name" name="first_name" placeholder="Enter your first name"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="last_name" class="block text-gray-700 font-medium mb-2">Last Name <span
+                            <label for="last_name" class="block mb-2 font-medium text-gray-700">Last Name <span
                                     class="text-red-500">*</span></label>
                             <input type="text" id="last_name" name="last_name" placeholder="Enter your last name"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address <span
+                            <label for="email" class="block mb-2 font-medium text-gray-700">Email Address <span
                                     class="text-red-500">*</span></label>
                             <input type="email" id="email" name="email" placeholder="Enter your email address"
-                                class="rounded-md border border-gray-300 p-2 w-full">
+                                class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Phone Number <span
+                            <label for="email" class="block mb-2 font-medium text-gray-700">Phone Number <span
                                     class="text-red-500">*</span></label>
                             <input type="text" id="phone" name="phone_number"
-                                class="rounded-md border border-gray-300 p-2 w-full sm:w-full lg:w-80"
+                                class="w-full p-2 border border-gray-300 rounded-md sm:w-full lg:w-80"
                                 placeholder="0701234567">
                         </div>
 
                         <div>
-                            <label for="physical_address" class="block text-gray-700 font-medium mb-2">Physical Address
+                            <label for="physical_address" class="block mb-2 font-medium text-gray-700">Physical Address
                                 <span class="text-red-500">*</span></label>
                             <input type="text" id="physical_address" name="address"
                                 placeholder="Enter your physical address"
-                                class="rounded-md border border-gray-300 p-2 w-full mt-4"> <!-- Added mt-4 class -->
+                                class="w-full p-2 mt-4 border border-gray-300 rounded-md"> <!-- Added mt-4 class -->
                         </div>
 
                         <div>
-                            <label for="country" class="block text-gray-700 font-medium mb-2 justify-left">Country <span
+                            <label for="country" class="block mb-2 font-medium text-gray-700 justify-left">Country <span
                                     class="text-red-500">*</span></label>
                             <select id="country" name="country"
-                                class="rounded-md border border-gray-300 p-2 w-full mt-4 select2">
+                                class="w-full p-2 mt-4 border border-gray-300 rounded-md select2">
                                 <option value="">Select Country</option>
                             </select>
                         </div>
@@ -199,25 +198,22 @@
 
             </div>
 
-
-
-
             <!-- Submit Button -->
 
             {{-- sponsor more --}}
             <div class="flex justify-center my-4 mr-4 ">
                 <button type="button" onclick="showConfirmSponsorMore()"
-                    class="mr-5 bg-gray-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sponsor
+                    class="px-4 px-6 py-2 py-3 mr-5 font-bold text-white bg-gray-600 rounded rounded-md hover:bg-blue-700">Sponsor
                     More</button>
 
                 <button type="submit"
-                    class="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Proceed
+                    class="px-4 px-6 py-2 py-3 font-bold text-white bg-blue-500 rounded rounded-md hover:bg-blue-700">Proceed
                     to Payment</button>
             </div>
         </form>
     </div>
 
- 
+
     <style>
         ::-webkit-input-placeholder {
             /* Chrome/Opera/Safari */
@@ -232,30 +228,29 @@
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- select2 --}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.6/sweetalert2.min.js" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/css/intlTelInput.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput-jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput-jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/utils.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/utils.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@20.1.0/build/css/intlTelInput.css">
 
     <script>
         $(document).ready(function() {
             $('.select2').select2();
         });
     </script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/css/intlTelInput.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput-jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput-jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/intlTelInput.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/utils.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/20.2.0/js/utils.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@20.1.0/build/css/intlTelInput.css">
-
-
-
 
 
     <script>
@@ -293,16 +288,11 @@
                 }
             });
         }
-    </script>   
+    </script>
 
 
-<!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 <script>
@@ -365,8 +355,7 @@
 
     <!-- choose for me form-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.6/sweetalert2.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
         function showConfirmSponsorMore() {
@@ -374,26 +363,26 @@
                 title: 'Choose For Me',
                 html: '<form id="sponsorForm">' +
                     '<div class="mb-4">' +
-                    '<label class="block text-gray-700 text-sm font-bold mb-2" for="gender">' +
+                    '<label class="block mb-2 text-sm font-bold text-gray-700" for="gender">' +
                     'Gender' +
                     '</label>' +
-                    '<select class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="gender" name="gender">' +
+                    '<select class="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline" id="gender" name="gender">' +
                     '<option value="Male">Male</option>' +
                     '<option value="Female">Female</option>' +
                     '<option value="Any">Any</option>' +
                     '</select>' +
                     '</div>' +
                     '<div class="mb-4">' +
-                    '<label class="block text-gray-700 text-sm font-bold mb-2" for="children">' +
+                    '<label class="block mb-2 text-sm font-bold text-gray-700" for="children">' +
                     'Number of Children' +
                     '</label>' +
-                    '<input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="children" name="children" type="number" min="1" max="10" value="1">' +
+                    '<input class="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline" id="children" name="children" type="number" min="1" max="10" value="1">' +
                     '</div>' +
                     '<div class="mb-4">' +
-                    '<label class="block text-gray-700 text-sm font-bold mb-2" for="age_range">' +
+                    '<label class="block mb-2 text-sm font-bold text-gray-700" for="age_range">' +
                     'Age Range' +
                     '</label>' +
-                    '<select class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age_range" name="age_range">' +
+                    '<select class="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline" id="age_range" name="age_range">' +
                     '<option value="1">3-10 years</option>' +
                     '<option value="2">11-16 years</option>' +
                     '<option value="3">17-21 years</option>' +
@@ -445,12 +434,12 @@
 
                                     // Construct HTML for child card
                                     let childHtml = `
-            <div class="mx-auto rounded-lg shadow-md mb-8 border border-blue-300 summary bg-gray-300 md:flex-row sm:flex-row flex flex-col md:flex-row rounded-lg shadow-md mb-8 border border-blue-300 sm:h-auto md:h-auto">
-                <img class="mx-auto w-20 h-20 rounded-full object-cover mx-auto mt-5 mb-0 sm:mt-5 sm:mb-0 md:mr-5 md:ml-10" src="${child.profile_picture}" alt="Placeholder Image">
+            <div class="flex flex-col mx-auto mb-8 bg-gray-300 border border-blue-300 rounded-lg shadow-md summary md:flex-row sm:flex-row sm:h-auto md:h-auto">
+                <img class="object-cover w-20 h-20 mx-auto mt-5 mb-0 rounded-full sm:mt-5 sm:mb-0 md:mr-5 md:ml-10" src="${child.profile_picture}" alt="Placeholder Image">
                 <div>
-                    <h3 class="font-bold mb-0 text-xl mt-5 text-blue-900">${child.first_name} ${child.second_name} <span class="ageup">${age} yrs</span></h3>
-                    <p class="text-blue-600 mt-0">Birthday: ${formattedDob}</p>
-                    <p class="text-blue-600 mt-5 mb-5">$35/month</p>
+                    <h3 class="mt-5 mb-0 text-xl font-bold text-blue-900">${child.first_name} ${child.second_name} <span class="ageup">${age} yrs</span></h3>
+                    <p class="mt-0 text-blue-600">Birthday: ${formattedDob}</p>
+                    <p class="mt-5 mb-5 text-blue-600">$35/month</p>
                 </div>
             </div>
         `;
@@ -639,7 +628,7 @@
 
 
 <script>
-  
+
 
     function showConfirmSponsorMore() {
         Swal.fire({
@@ -662,3 +651,96 @@
         });
     }
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myForm').on('submit', function(e) {
+            e.preventDefault();
+
+            // Create a FormData object from the form element
+            var formData = new FormData(this);
+
+            // Append CSRF token to FormData
+            formData.append('_token', '{{ csrf_token() }}');
+
+            // AJAX request
+            $.ajax({
+                url: '{{ route('sponsor-child') }}', // Replace with your route
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log("=============returned response===================");
+                    console.log(response);
+                    console.log("=========returned response=======================");
+
+                    // Assuming response contains necessary data for redirection
+                    const checkoutData = {
+                        transactionReference: response.transactionReference,
+                        orderId: response.orderId,
+                        amount: response.amount||1000,
+                        dateOfPayment: response.dateOfPayment,
+                        redirectUrl: response.redirectUrl,
+                        narration: response.narration,
+                        expiryTime: response.expiryTime,
+                        customerId: response.customerId,
+                        customerFirstName: response.customerFirstName,
+                        customerSecondName: response.customerSecondName,
+                        customerEmail: response.customerEmail,
+                        customerMobile: response.customerMobile,
+                        merchantCode: response.merchantCode,
+                        terminalType: "WEB",
+                        domain: "ISWKE",
+                        currencyCode: "UGX",
+                        displayPrivacyPolicy: response.displayPrivacyPolicy,
+                        fee: "0",
+                        iconUrl: response.iconUrl,
+                        providerIconUrl: "https://gatewaybackend-uat.quickteller.co.ke/ipg-backend/api/merchant-logo",
+                        primaryAccentColor: "#3a57e8",
+                        redirectMerchantName: "Fountain of Peace",
+                        merchantName: "Fountain of Peace",
+                        customerCity: "Kampala",
+                        customerCountry: "Uganda",
+                        customerState: "Kampala"
+                    };
+
+                    console.log("=============checkout data===================");
+                    console.log(checkoutData);
+                    console.log("=========checkout data=======================");
+
+                    // Function to handle the redirection
+                    function checkout(jsonData) {
+                        const checkoutForm = document.createElement("form");
+                        checkoutForm.style.display = "none";
+                        checkoutForm.method = "POST";
+                        checkoutForm.action = "https://gatewaybackend-uat.quickteller.co.ke/ipg-backend/api/checkout";
+                        checkoutForm.target = "_blank";
+
+                        for (const key in jsonData) {
+                            const formField = document.createElement("input");
+                            formField.name = key;
+                            formField.value = jsonData[key];
+                            checkoutForm.appendChild(formField);
+                        }
+
+                        document.body.appendChild(checkoutForm);
+                        checkoutForm.submit();
+                        document.body.removeChild(checkoutForm);
+                    }
+
+                    checkout(checkoutData);
+                },
+                error: function(xhr) {
+                    console.log("error");
+                    console.log(xhr);
+                    // Handle error response
+                    $('#response').html('<p>An error occurred: ' + xhr.responseText + '</p>');
+                }
+            });
+        });
+    });
+</script>
+
+
