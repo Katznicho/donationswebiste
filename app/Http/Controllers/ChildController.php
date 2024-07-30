@@ -249,11 +249,11 @@ class ChildController extends Controller
 
     //         $res = Pesapal::orderProcess($reference, $total_amount, $phone_number, $description, $callback_url, $sponsorData['first_name'], $sponsorData['last_name'], $customer_email, $customer_id, $cancel_url);
 
-    //         if ($res->success) {
-    //             return redirect($res->message->redirect_url);
-    //         } else {
-    //             return redirect()->back()->with('error', 'Payment Failed please try again');
-    //         }
+            // if ($res->success) {
+            //     return redirect($res->message->redirect_url);
+            // } else {
+            //     return redirect()->back()->with('error', 'Payment Failed please try again');
+            // }
     //     } catch (\Throwable $e) {
     //         dd($e->getMessage());
     //         return redirect()->back()->with("error", $e->getMessage());

@@ -11,11 +11,11 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Payments\Pesapal;
 use App\Traits\MessageTrait;
-use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Services\InterswitchService;
 
 class PaymentController extends Controller
 {
@@ -27,6 +27,32 @@ class PaymentController extends Controller
     {
         //
         return view("payments.index");
+    }
+
+    protected $interswitchService;
+
+    public function __construct(InterswitchService $interswitchService)
+    {
+        $this->interswitchService = $interswitchService;
+    }
+
+    public function checkTransaction(Request $request)
+    {
+        $transactionId = $request->input('transaction_id');
+        $response = $this->interswitchService->transactionInquiry($transactionId);
+
+        return response()->json(['data' => $response]);
+    }
+
+    public function finishInterswitchPaymen(Request $request){
+        try {
+            //code...
+            return response()->json(['success' => true, 'message' => 'Success', 'response' => $request->all()]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['success' => true, 'message' => 'Success', 'response' => $request->all()]);
+
+        }
     }
 
 

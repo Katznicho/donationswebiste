@@ -18,6 +18,7 @@
         <link href="https://fonts.cdnfonts.com/css/lato" rel="stylesheet">
                 
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        
         <script src="https://cdn.tailwindcss.com"></script>
           <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
         <!-- Scripts -->
