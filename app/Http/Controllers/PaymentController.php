@@ -38,10 +38,16 @@ class PaymentController extends Controller
 
     public function checkTransaction(Request $request)
     {
+        try {
         $transactionId = $request->input('transaction_id');
         $response = $this->interswitchService->transactionInquiry($transactionId);
-
+        $response = json_decode($response, true);
         return response()->json(['data' => $response]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['success' => false, 'message' => $th->getMessage()]);
+        }
     }
 
     public function finishInterswitchPaymen(Request $request){

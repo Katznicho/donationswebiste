@@ -30,3 +30,5 @@ Route::get("finishPayment", [PaymentController::class, "finishPayment"]);
 Route::get("cancelPayment", [PaymentController::class, "cancelPayment"]);
 
 Route::post("testSendingMessages", [PaymentController::class, "testSendingMessages"]);
+
+Route::post("checkTransaction",[PaymentController::class, "checkTransaction"]);
