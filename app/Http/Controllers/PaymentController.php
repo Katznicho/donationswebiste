@@ -52,7 +52,10 @@ class PaymentController extends Controller
 
     public function finishInterswitchPaymen(Request $request){
         try {
-            //code...
+            //code..
+            Log::info("==========interswitch callback===========================");
+            Log::info($request->all());
+            Log::info("===============interswitch callback==========================================");
             return response()->json(['success' => true, 'message' => 'Success', 'response' => $request->all()]);
         } catch (\Throwable $th) {
             //throw $th;

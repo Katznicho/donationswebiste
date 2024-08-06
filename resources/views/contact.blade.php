@@ -672,9 +672,12 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    console.log("=============returned response===================");
-                    console.log(response);
-                    console.log("=========returned response=======================");
+
+                    console.log("=======returned response==========")
+                     console.log(response);
+                     console.log("====returned response=============")
+
+
 
                     // Assuming response contains necessary data for redirection
                     const checkoutData = {
@@ -682,7 +685,7 @@
                         orderId: response.orderId,
                         amount: response.amount*100,
                         dateOfPayment: response.dateOfPayment,
-                        redirectUrl: response.redirectUrl,
+                        redirectUrl: "https://sponsorship.fountainofpeace.org.ug/",
                         narration: response.narration,
                         expiryTime: response.expiryTime,
                         customerId: response.customerId,
@@ -695,7 +698,7 @@
                         terminalType: "WEB",
                         domain: "ISWUG",
                         currencyCode: "UGX",
-                        displayPrivacyPolicy: response.displayPrivacyPolicy,
+                        displayPrivacyPolicy: "false",
                         fee: "0",
                         iconUrl: response.iconUrl,
                         providerIconUrl: "https://gatewaybackend-uat.quickteller.co.ke/ipg-backend/api/merchant-logo",
@@ -716,7 +719,7 @@
                         const checkoutForm = document.createElement("form");
                         checkoutForm.style.display = "none";
                         checkoutForm.method = "POST";
-                        checkoutForm.action = "https://gatewaybackend-uat.quickteller.co.ke/ipg-backend/api/checkout";
+                        checkoutForm.action = "https://gatewaybackend.quickteller.co.ke/ipg-backend/api/checkout";;
                         checkoutForm.target = "_blank";
 
                         for (const key in jsonData) {
@@ -730,6 +733,10 @@
                         checkoutForm.submit();
                         document.body.removeChild(checkoutForm);
                     }
+
+                    //new checkout function
+                    
+                    //new checkout function
 
                     checkout(checkoutData);
                 },
