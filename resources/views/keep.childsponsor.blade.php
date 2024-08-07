@@ -194,12 +194,17 @@
                 </div>
 
 
+
+
             </div>
 
             <!-- Submit Button -->
 
             {{-- sponsor more --}}
             <div class="flex justify-center my-4 mr-4 ">
+                <button type="button" onclick="showConfirmSponsorMore()"
+                    class="px-4 px-6 py-2 py-3 mr-5 font-bold text-white bg-gray-600 rounded rounded-md hover:bg-blue-700">Sponsor
+                    More</button>
 
                 <button type="submit"
                     class="px-4 px-6 py-2 py-3 font-bold text-white bg-blue-500 rounded rounded-md hover:bg-blue-700">Proceed
@@ -323,6 +328,167 @@
 
     });
 </script>
+
+
+    <script>
+        function showConfirmSponsorMore() {
+            Swal.fire({
+                title: 'Thank you for your generosity',
+                text: 'You can choose for yourself another child or mother from our profiles or opt for us to choose one for you',
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3a57e8', // Tailor to your button color scheme
+                cancelButtonColor: '#95a5a6', // Tailor to your button color scheme
+                confirmButtonText: 'Choose For Me',
+                cancelButtonText: 'Choose for Myself'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form (assuming the form has an ID of 'sponsorForm')
+                    document.getElementById('sponsorForm').submit();
+                } else {
+                    // Redirect to the page where you want to choose for the user
+                    window.location.href = '/child';
+                }
+            });
+        }
+    </script>
+
+    <!-- choose for me form-->
+
+
+
+    <script>
+        function showConfirmSponsorMore() {
+            Swal.fire({
+                title: 'Choose For Me',
+                html: '<form id="sponsorForm">' +
+                    '<div class="mb-4">' +
+                    '<label class="block mb-2 text-sm font-bold text-gray-700" for="gender">' +
+                    'Gender' +
+                    '</label>' +
+                    '<select class="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline" id="gender" name="gender">' +
+                    '<option value="Male">Male</option>' +
+                    '<option value="Female">Female</option>' +
+                    '<option value="Any">Any</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '<div class="mb-4">' +
+                    '<label class="block mb-2 text-sm font-bold text-gray-700" for="children">' +
+                    'Number of Children' +
+                    '</label>' +
+                    '<input class="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline" id="children" name="children" type="number" min="1" max="10" value="1">' +
+                    '</div>' +
+                    '<div class="mb-4">' +
+                    '<label class="block mb-2 text-sm font-bold text-gray-700" for="age_range">' +
+                    'Age Range' +
+                    '</label>' +
+                    '<select class="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline" id="age_range" name="age_range">' +
+                    '<option value="1">3-10 years</option>' +
+                    '<option value="2">11-16 years</option>' +
+                    '<option value="3">17-21 years</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '</form>',
+                showCancelButton: true,
+                showLoaderOnConfirm: true,
+                confirmButtonColor: '#3a57e8', // Tailor to your button color scheme
+                cancelButtonColor: '#95a5a6', // Tailor to your button color scheme
+                confirmButtonText: 'Proceed',
+                cancelButtonText: 'or Choose For Myself',
+                allowOutsideClick: false // Prevent redirection when clicking outside the alert,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Handle form submission here
+                    const formData = new FormData(document.getElementById('sponsorForm'));
+                    // Add CSRF token to the formData
+                    formData.append('_token', '{{ csrf_token() }}');
+                    // Make an AJAX request to your backend
+                    fetch('/sponsorMore', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            let childrenContainer = document.getElementById('childrenContainer');
+
+                            // Clear existing content in the container
+                            childrenContainer.innerHTML = '';
+                            // Initialize an array to store the IDs of the children being sponsored
+                            let sponsoredChildIds = [];
+
+                            // Loop through the returned children data
+                            data?.data?.forEach(child => {
+                                if (child) {
+                                    // Calculate age based on date of birth
+                                    let dob = new Date(child.date_of_birth);
+                                    let now = new Date();
+                                    let age = now.getFullYear() - dob.getFullYear();
+                                    if (now.getMonth() < dob.getMonth() || (now.getMonth() === dob
+                                            .getMonth() && now.getDate() < dob.getDate())) {
+                                        age--;
+                                    }
+
+                                    // Format date of birth
+                                    let formattedDob = dob.getDate() + nth(dob.getDate()) + ' ' +
+                                        monthNames[dob.getMonth()] + ' ' + dob.getFullYear();
+
+                                    // Construct HTML for child card
+                                    let childHtml = `
+            <div class="flex flex-col mx-auto mb-8 bg-gray-300 border border-blue-300 rounded-lg shadow-md summary md:flex-row sm:flex-row sm:h-auto md:h-auto">
+                <img class="object-cover w-20 h-20 mx-auto mt-5 mb-0 rounded-full sm:mt-5 sm:mb-0 md:mr-5 md:ml-10" src="${child.profile_picture}" alt="Placeholder Image">
+                <div>
+                    <h3 class="mt-5 mb-0 text-xl font-bold text-blue-900">${child.first_name} ${child.second_name} <span class="ageup">${age} yrs</span></h3>
+                    <p class="mt-0 text-blue-600">Birthday: ${formattedDob}</p>
+                    <p class="mt-5 mb-5 text-blue-600">$35/month</p>
+                </div>
+            </div>
+        `;
+
+                                    // Append child card HTML to the container
+                                    childrenContainer.insertAdjacentHTML('beforeend', childHtml);
+
+                                    // Add the ID of the sponsored child to the array
+                                    sponsoredChildIds.push(child.id);
+                                }
+                            });
+                            console.log(sponsoredChildIds);
+                            // Set the value of the hidden input field 'more_sponsor' to contain the IDs of the sponsored children
+                            document.getElementById('more_sponsor').value = sponsoredChildIds.join(',');
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                } else {
+                    // Redirect to a specific section on the same page
+                    window.location.href = '/child#cardsSection';
+                }
+            });
+        }
+
+        // Function to get the suffix for a day
+        function nth(day) {
+            if (day > 3 && day < 21) return 'th';
+            switch (day % 10) {
+                case 1:
+                    return "st";
+                case 2:
+                    return "nd";
+                case 3:
+                    return "rd";
+                default:
+                    return "th";
+            }
+        }
+
+        // Array of month names
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+    </script>
+
+
+
 
 
 
@@ -461,6 +627,30 @@
 
 
 
+<script>
+
+
+    function showConfirmSponsorMore() {
+        Swal.fire({
+            title: 'Thank you for your sponsorship!',
+            text: 'Choose preffered way to support more children.',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3a57e8', // Tailor to your button color scheme
+            cancelButtonColor: '#95a5a6', // Tailor to your button color scheme
+            confirmButtonText: 'Choose For Me',
+            cancelButtonText: 'Choose for Myself'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form (assuming the form has an ID of 'sponsorForm')
+                document.getElementById('sponsorForm').submit();
+            } else {
+                // Redirect to the page where you want to choose for the user
+                window.location.href = '/child';
+            }
+        });
+    }
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -470,10 +660,6 @@
 
             // Create a FormData object from the form element
             var formData = new FormData(this);
-
-             console.log("===========form data=========")
-            console.log(formData);
-            
 
             // Append CSRF token to FormData
             formData.append('_token', '{{ csrf_token() }}');
@@ -485,7 +671,6 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                
                 success: function(response) {
 
                     console.log("=======returned response==========")
@@ -557,15 +742,8 @@
                 },
                 error: function(xhr) {
                     console.log("error");
-                    console.log(xhr.responseJSON.error);
+                    console.log(xhr);
                     // Handle error response
-                    //use swal
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Opps!!!',
-                        html: xhr.responseJSON.error,
-                        confirmButtonColor: "#3a57e8"
-                    })
                     $('#response').html('<p>An error occurred: ' + xhr.responseText + '</p>');
                 }
             });

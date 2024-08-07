@@ -39,6 +39,9 @@ class PaymentController extends Controller
     public function checkTransaction(Request $request)
     {
         try {
+          $request->validate([
+            'transaction_id' => 'required|string'
+          ]);  
         $transactionId = $request->input('transaction_id');
         $response = $this->interswitchService->transactionInquiry($transactionId);
         $response = json_decode($response, true);
@@ -50,7 +53,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function finishInterswitchPaymen(Request $request){
+    public function finishInterswitchPayment(Request $request){
         try {
             //code..
             Log::info("==========interswitch callback===========================");

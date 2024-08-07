@@ -118,18 +118,28 @@ class RescueBabyController extends Controller
                 'user_id' => $user->id
             ]);
 
-            $callback_url = "https://dummy.fountainofpeace.org.ug/finishPayment";
-            $cancel_url = "https://dummy.fountainofpeace.org.ug/cancelPayment";
-
-            $res = Pesapal::orderProcess($reference, $amount, $phone_number, $description, $callback_url, $sponsorData['first_name'], $sponsorData['last_name'], $customer_email, $customer_id, $cancel_url);
-
-            if ($res->success) {
-                return redirect($res->message->redirect_url);
-            } else {
-                return redirect()->back()->with('error', 'Payment Failed please try again');
-            }
+            $response = [
+                'transactionReference' => $reference,
+                'orderId' => $reference,
+                'amount' => $amount,
+                'dateOfPayment' => now()->toISOString(),
+                'redirectUrl' => "http://localhost:3000/services/parking/interswitch-payment-summary?paymentType=pass&serviceType=parking",
+                'narration' => "Parking Pass Payment",
+                'expiryTime' => now()->addMinutes(5)->toISOString(),
+                'customerId' => $customer_id,
+                'customerFirstName' => $sponsorData['first_name'],
+                'customerSecondName' => $sponsorData['last_name'],
+                'customerEmail' => $customer_email,
+                'customerMobile' => $phone_number,
+                'merchantCode' => "ISWKEN0001",
+                'terminalType' => "WEB",
+                'domain' => "ISWKE",
+                'currencyCode'
+            ];
+    
+            return response()->json($response);
         } catch (\Throwable $e) {
-            dd($e->getMessage());
+
             return redirect()->back()->with("error", $e->getMessage());
         }
     }
