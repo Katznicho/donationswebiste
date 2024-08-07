@@ -110,11 +110,11 @@ class RescueBabyController extends Controller
                 'status' => $status,
                 'description' => $description,
                 'phone_number' => $phone_number,
-                'payment_mode' => "pesapal",
-                'OrderNotificationType' => "pesapal",
+                'payment_mode' => "interswitch",
+                'OrderNotificationType' => "interswitch",
                 'order_tracking_id' => $reference,
                 'type' => "RescueBaby",
-                'payment_method' => "Pesapal",
+                'payment_method' => "Interswitch",
                 'user_id' => $user->id
             ]);
 
