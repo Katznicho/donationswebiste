@@ -535,7 +535,7 @@
                         checkoutForm.style.display = "none";
                         checkoutForm.method = "POST";
                         checkoutForm.action = "https://gatewaybackend.quickteller.co.ke/ipg-backend/api/checkout";;
-                        checkoutForm.target = "_blank";
+                        //checkoutForm.target = "_blank";
 
                         for (const key in jsonData) {
                             const formField = document.createElement("input");
