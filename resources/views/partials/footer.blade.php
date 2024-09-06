@@ -1,76 +1,92 @@
-<footer class="footer py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- First column -->
-        <div class="text-white mr-20 justify-start">
-            {{-- <h2 class="text-lg font-semibold mb-4">Quick Links</h2> --}}
-            <!-- Add more links as needed -->
-
-            <i class="fa fa-phone mr-2"></i>+44 1494 758998
-            <br>
-
-            <!-- Email Icon -->
-            <i class="fa fa-envelope mr-2"></i>&nbsp;info@fountainofpeace.net
-
-            <br>
-            <br>
-
-            <p>
-                Registered Charity in England and Wales No. 1117909, Scotland SC053272
+<footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Logo and Description Section -->
+        <div>
+            <div class="flex items-center mb-4">
+                <img src="{{ asset('images/logo.png') }}" alt="Fountain of Peace Logo" class="h-12">
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+                We provide orphaned and abandoned children with a loving Christian home where they receive all the 
+                <strong>love</strong>, <strong>care</strong>, <strong>protection</strong>, and practical 
+                <strong>support</strong> they need to thrive.
             </p>
-
-            <br>
-            <br>
-
-            <div class="flex justify-start icons">
-
-                <i class="facebook" style="">
-                    <img src="{{ asset('images/facebook.png') }}" alt="logo" class="mr-2" width="20" height="30">
-                </i>
-                <i class="twitter">
-                    <img src="{{ asset('images/twitter (1).png') }}" alt="logo" class="mr-2" width="20" height="30">
-                </i>
-                <i class="youtube">
-                    <img src="{{ asset('images/youtube.png') }}" alt="logo" width="25" height="40"
-                        class="mt-0 mr-2">
-                </i>
-                <i class="instagram">
-                    <img src="{{ asset('images/instagram.png') }}" alt="logo" width="20" height="20">
-                </i>
+            <div class="mt-4 flex space-x-4">
+                <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
-        <!-- Second column -->
-        <div class="text-white justify-center">
+        <!-- Contact Info Section -->
+        <div>
+            <h2 class="font-semibold mb-4">Contact Info</h2>
+            <p>Kyenjojo, Uganda</p>
+            <p class="mt-4 space-y-4">
+                <span><i class="fas fa-phone-alt text-green-400"></i> +256-700-902-465</span><br>
+                <span><i class="fas fa-phone-alt text-green-400"></i> +256-700-902-465</span><br>
+                <span><i class="fas fa-envelope text-green-400"></i> info@fountainofpeace.org.ug</span>
+            </p>
+        </div>
 
-            <ul>
-                <li><a href="#" class="block py-1">Site Map</a></li>
-                <li><a href="#" class="block py-1">Privacy & Cookies</a></li>
-                <li><a href="#" class="block py-1">Terms of Use</a></li>
-                <li><a href="#" class="block py-1">Anti Spam Policy</a></li>
-                <li><a href="#" class="block py-1">Safeguarding Policy</a></li>
-                <!-- Add more links as needed -->
-
-
-
+        <!-- Quick Links Section -->
+        <div>
+            <h2 class="font-semibold mb-4">Quick Links</h2>
+            <ul class="space-y-4">
+                <li>&gt; &nbsp;<a href="#" class="hover:underline">Who we are</a></li>
+                <hr class="border-pale-grey">
+                <li>&gt; &nbsp;<a href="#" class="hover:underline">Sponsor a Child</a></li>
+                <hr class="border-pale-grey">
+                <li>&gt; &nbsp;<a href="#" class="hover:underline">Donate</a></li>
+                <hr class="border-pale-grey">
+                <li>&gt; &nbsp;<a href="#" class="hover:underline">Contact</a></li>
+                <hr class="border-pale-grey">
             </ul>
         </div>
 
-        <!-- Third column -->
-        <div class="text-white justify-center">
-            {{-- <h2 class="text-lg font-semibold mb-4">Subscribe</h2> --}}
-            <div class="grid grid-rows-2 gap-2 ">
-                <button class="donate hover:bg-blue-600 text-white w-40 px-2 py-2 rounded-full"
-                    style="background-color: #E31F62;">Donate Now</button>
-                <button class=" hover:bg-red-600 text-white px-2 w-60 py-2 rounded-full"
-                    style="background-color: #12B0D1;">Subscribe to our Newletter</button>
+        <!-- Urgent Causes Section -->
+        <div>
+            <h2 class="font-semibold mb-4">Urgent Causes</h2>
+            <div class="mb-4 flex items-start">
+                <img src="{{ asset('images/urgent1.jpg') }}" alt="Placeholder Image" class="h-16 w-16 rounded mr-4">
+                <div>
+                    <p class="mb-2">Second Hand Goods Donation</p>
+                    <div class="w-full bg-gray-400 h-2 mb-1">
+                        <div class="bg-blue-600 h-2" style="width: 29%"></div>
+                    </div>
+                    <p class="text-sm text-gray-500">29% DONATED</p>
+                </div>
             </div>
-            <br>
-            <br>
-            {{-- add copy right --}}
-            <p class="mb-5"> &copy; Copyright 2024 </p>
+            
+            <div class="mb-4 flex items-start">
+                <img src="{{ asset('images/urgent2.jpg') }}" alt="Placeholder Image" class="h-16 w-16 rounded mr-4">
+                <div>
+                    <p class="mb-2">Education Needed</p>
+                    <div class="w-full bg-gray-400 h-2 mb-1">
+                        <div class="bg-blue-600 h-2" style="width: 40%"></div>
+                    </div>
+                    <p class="text-sm text-gray-500">40% DONATED</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start">
+                <img src="{{ asset('images/urgent3.jpg') }}" alt="Placeholder Image" class="h-16 w-16 rounded mr-4">
+                <div>
+                    <p class="mb-2">Save Child Africa</p>
+                    <div class="w-full bg-gray-400 h-2 mb-1">
+                        <div class="bg-blue-600 h-2" style="width: 51%"></div>
+                    </div>
+                    <p class="text-sm text-gray-500">51% DONATED</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <p class="flex"> Built by &nbsp; &nbsp; <img src="{{ asset('images/footer logo.png') }}"> </p>
-
+    <!-- Bottom Section -->
+    <div class="container mx-auto mt-8 border-t border-gray-700 pt-6 text-center">
+        <div class="md:flex justify-between items-center space-y-4 md:space-y-0">
+            <p class="text-gray-400">Privacy Policy | Terms Of Use</p>
+            <p class="text-gray-400">Copyright 2024 Fountain of Peace Children's Foundation Uganda, All Rights Reserved</p>
         </div>
     </div>
 </footer>

@@ -1,93 +1,45 @@
-<nav class="text-white p-4 md:p-2 lg:p-2 fixed w-full z-10 justify-between" id="header" style="background-color: #12B0D1;">
-    <div class="flex items-center justify-between lg:px-20 px-5">
-        <div class="flex items-center lg:ml-10 md:ml-10">
-            <!-- Make the logo a link -->
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-full h-100 mx-auto"
-                    class="h-8 w-auto mr-2 ">
-            </a>
-            <span class="text-xl font-bold hidden md:inline"></span>
+<header id="main-header" class="bg-white shadow-md py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 flex justify-between items-center transition-all duration-300">
+        <!-- Logo Section -->
+        <div class="flex items-center space-x-2">
+        <a href="https://fountainofpeace.org.ug/" >   <img id="logo" src="{{ asset('images/logo.png') }}" alt="Fountain of Peace Logo" class="h-16 transition-all duration-300"> </a>
         </div>
-        <!-- Hamburger menu icon -->
-        <div class="flex items-center md:hidden">
-            <button id="menu-toggle" class="text-white focus:outline-none ml-10">
-                <i class="fas fa-bars"></i>
+
+        <!-- Navigation Links for Medium Screens and Larger -->
+        <nav class="hidden md:flex space-x-8">
+            <a href="{{ route('home') }}" class="menu-item text-gray-600 font-semibold">Home</a>
+            <a href="{{ route('sponsor-child') }}" class="menu-item text-gray-600">Who we are</a>
+            <a href="{{ route('donate') }}" class="menu-item text-gray-600">Contact</a>
+        </nav>
+
+        <!-- Buttons Section for Medium Screens and Larger -->
+        <div class="space-x-2 hidden md:flex">
+            <a href="{{ route('donate') }}" class="bg-blue-600 text-white px-8 py-2 hover:bg-blue-700 font-semibold">Donate</a>
+            <a href="{{ route('home') }}" class="bg-teal-600 text-white px-8 py-2 hover:bg-teal-700 font-semibold">Sponsor</a>
+        </div>
+
+        <!-- Hamburger Icon for Small Screens -->
+        <div class="md:hidden">
+            <button id="menu-toggle" class="focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
-        <!-- Container for rows -->
-        <div class="flex flex-col items-end space-y-4 md:space-y-0 md:space-x-6 space-between mr-10 hidden md:flex">
-            <!-- First row: Icons and Donate Button -->
-            <div class="flex items-center justify-center space-x-6 mb-5 text-sm text-light"> <!-- Phone Icon -->
-                <i class="fa fa-phone text-sm"></i><span class="word">&nbsp;+44 1494 758998</span>
-                <!-- Email Icon -->
-                <i class="fa fa-envelope text-sm"></i><span class="word">&nbsp;info@fountainofpeace.net</span>
-                <!-- Social Media Icons (You can replace these with actual icons) -->
-                <div class="flex justify-between ">
-
-                    <i class="facebook mr-4" style="">
-                        <img src="{{ asset('images/facebook.png') }}" alt="logo" class="" width="20"
-                            height="30">
-                    </i>
-                    <i class="twitter mr-2">
-                        <img src="{{ asset('images/twitter (1).png') }}" alt="logo" class="" width="20"
-                            height="30">
-                    </i>
-                    <i class="youtube mr-2">
-                        <img src="{{ asset('images/youtube.png') }}" alt="logo" width="25" height="40"
-                            class="mt-0 ">
-                    </i>
-                    <i class="instagram mr-2">
-                        <img src="{{ asset('images/instagram.png') }}" alt="logo" width="20" height="20">
-                    </i>
-                </div>
-                <!-- Donate Now Button -->
-                <a href="{{ route('donate') }}">
-                    <button class="text-white px-4 py-2 rounded-full hover:bg-blue-500 hover:text-white"
-                        style="background-color: #E31F62;">Donate Now</button>
-                </a>
-            </div>
-            <!-- Second row: Tabs -->
-            <div class="flex items-center justify-center space-x-6 space-between ">
-                <a href="{{ route('home') }}" class="underline">Home</a>
-                <a href="{{ route('home') }}" class="hover:underline">Who We Are</a>
-                <a href="{{ route('home') }}" class="hover:underline">What we do</a>
-                <a href="{https://www.fountainofpeace.net/How-can-you-help" class="hover:underline">How can you help</a>
-                <a href="https://www.fountainofpeace.net/News" class="hover:underline">News</a>
-                <a href="https://www.fountainofpeace.net/Contact-us" class="hover:underline">Contact Us</a>
-                <a href="{{ route('login') }}" class="hover:underline">Login</a>
-            </div>
-        </div>
     </div>
-</nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="text-white p-4 md:p-6 fixed w-full z-10 hidden md:hidden"
-    style="background-color: #12B0D1;">
-    <div class="flex flex-col items-center space-y-4">
-        <div class="flex items-center justify-between w-full">
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-full h-100 mx-auto"
-                    class="h-8 w-auto mr-2 ">
-            </a>
-            <button id="menu-toggle" class="text-white focus:outline-none">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="flex flex-col items-center justify-center space-y-6 mt-4">
-            <a href="{{ route('home') }}" class="underline">Home</a>
-            <a href="{{ route('home') }}" class="hover:underline">Who We Are</a>
-            <a href="{{ route('home') }}" class="hover:underline">What we do</a>
-            <a href="{{ route('home') }}" class="hover:underline">How can you help</a>
-            <a href="{{ route('home') }}" class="hover:underline">News</a>
-            <a href="{{ route('home') }}" class="hover:underline">Contact Us</a>
-            <a href="{{ route('login') }}" class="hover:underline">Login</a>
-            <a href="{{ route('donate') }}">
-                <button class="text-white px-4 py-2 rounded-full hover:bg-blue-500 hover:text-white"
-                    style="background-color: #E31F62;">Donate Now</button>
-            </a>
-        </div>
-    </div>
-</div>
+    <!-- Collapsible Side Menu (hidden by default) -->
+    <nav id="side-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <button id="close-menu" class="text-gray-600 text-2xl p-4 focus:outline-none">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mt-12 space-y-6 px-6">
+            <li><a href="{{ route('home') }}" class="block text-gray-600 text-lg">Home</a></li>
+            <li><a href="{{ route('sponsor-child') }}" class="block text-gray-600 text-lg">Who we are</a></li>
+            <li><a href="{{ route('donate') }}" class="block text-gray-600 text-lg">Contact</a></li>
+            <li><a href="{{ route('donate') }}" class="block text-white bg-blue-600 py-2 px-4 text-center rounded hover:bg-blue-700">Donate</a></li>
+            <li><a href="{{ route('home') }}" class="block text-white bg-teal-600 py-2 px-4 text-center rounded hover:bg-teal-700">Sponsor</a></li>
+        </ul>
+    </nav>
+</header>
 
 <script>
     const menuToggle = document.getElementById('menu-toggle');
@@ -106,16 +58,70 @@
 
 
 <style>
-#mobile-menu {
-  /* Existing styles... */
-  max-height: calc(150vh - 50vh); /* Adjust header_height as needed */
-  overflow-y: auto; /* Enable scrolling if content overflows */
-}
+    .menu-item {
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
 
-.word {
-  font-size: 1rem;
-  margin-left: 0 !important;
-  font-weight: 100 !important;
-}
+    .menu-item::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 50%;
+        height: 2px;
+        background-color: transparent;
+        transition: width 0.3s ease, background-color 0.3s ease;
+    }
+
+    .menu-item:hover {
+        color: black;
+    }
+
+    .menu-item:hover::after {
+        background-color: black;
+        width: 50%;
+    }
+
+    /* Sticky Header Customization */
+    #main-header.shrink {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        height: 56px; /* Shrinking header height */
+    }
+
+    #logo.shrink {
+        height: 40px; /* Shrinks logo height */
+    }
 </style>
 
+<!-- Shrink on Scroll and Hamburger Menu Script -->
+<script>
+    // Shrink header on scroll
+    window.onscroll = function() {
+        let header = document.getElementById('main-header');
+        let logo = document.getElementById('logo');
+
+        if (window.scrollY > 50) {
+            header.classList.add('shrink');
+            logo.classList.add('shrink');
+        } else {
+            header.classList.remove('shrink');
+            logo.classList.remove('shrink');
+        }
+    };
+
+    // Toggle side menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const sideMenu = document.getElementById('side-menu');
+
+    menuToggle.addEventListener('click', () => {
+        sideMenu.classList.toggle('translate-x-full');
+    });
+
+    closeMenu.addEventListener('click', () => {
+        sideMenu.classList.toggle('translate-x-full');
+    });
+</script>
