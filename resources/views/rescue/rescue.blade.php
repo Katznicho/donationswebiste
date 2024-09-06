@@ -26,7 +26,7 @@ Although Bethel Babies Home sponsorship does not target a particular child, your
             </div>
         </div>
 
-        <form action="{{ route('child.store') }}" method="POST" class="bg-white-300 py-4 px-4 rounded-lg shadow-md"
+        <form id="myForm" method="POST" class="bg-white-300 py-4 px-4 rounded-lg shadow-md"
             style="background-color: white !important;">
 
 
@@ -257,26 +257,7 @@ Although Bethel Babies Home sponsorship does not target a particular child, your
             utilsScript: "/intl-tel-input/js/utils.js?1711461746916" // just for formatting/placeholders etc
         });
 
-        function showConfirmSponsorMore() {
-            Swal.fire({
-                title: 'Thank you for your sponsorship!',
-                text: 'Choose preffered way to support more children.',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3a57e8', // Tailor to your button color scheme
-                cancelButtonColor: '#95a5a6', // Tailor to your button color scheme
-                confirmButtonText: 'Choose For Me',
-                cancelButtonText: 'Choose for Myself'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Submit the form (assuming the form has an ID of 'sponsorForm')
-                    document.getElementById('sponsorForm').submit();
-                } else {
-                    // Redirect to the page where you want to choose for the user
-                    window.location.href = '/child';
-                }
-            });
-        }
+
     </script>
 
     <script>
@@ -383,4 +364,111 @@ Although Bethel Babies Home sponsorship does not target a particular child, your
             confirmButtonColor: "#3a57e8"
         });
     @endif
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#myForm').on('submit', function(e) {
+            e.preventDefault();
+
+            // Create a FormData object from the form element
+            var formData = new FormData(this);
+
+             console.log("===========form data=========")
+            console.log(formData);
+            
+
+            // Append CSRF token to FormData
+            formData.append('_token', '{{ csrf_token() }}');
+
+            // AJAX request
+            $.ajax({
+                url: '{{ route('child.store') }}', // Replace with your route
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                
+                success: function(response) {
+
+                    console.log("=======returned response==========")
+                     console.log(response);
+                     console.log("====returned response=============")
+                    // Assuming response contains necessary data for redirection
+                    const checkoutData = {
+                        transactionReference: response.transactionReference,
+                        orderId: response.orderId,
+                        amount: response.amount*100,
+                        dateOfPayment: response.dateOfPayment,
+                        redirectUrl: "https://sponsorship.fountainofpeace.org.ug/",
+                        narration: response.narration,
+                        expiryTime: response.expiryTime,
+                        customerId: response.customerId,
+                        customerFirstName: response.customerFirstName,
+                        customerSecondName: response.customerSecondName,
+                        customerEmail: response.customerEmail,
+                        customerMobile: response.customerMobile,
+                        //merchantCode:"RISSUG0001",
+                        merchantCode: "FOPUG00001",
+                        terminalType: "WEB",
+                        domain: "ISWUG",
+                        currencyCode: "UGX",
+                        displayPrivacyPolicy: "false",
+                        fee: "0",
+                        iconUrl: response.iconUrl,
+                        providerIconUrl: "https://gatewaybackend-uat.quickteller.co.ke/ipg-backend/api/merchant-logo",
+                        primaryAccentColor: "#3a57e8",
+                        redirectMerchantName: "Fountain of Peace",
+                        merchantName: "Fountain of Peace",
+                        customerCity: "Kampala",
+                        customerCountry: "Uganda",
+                        customerState: "Kampala"
+                    };
+
+                    console.log("=============checkout data===================");
+                    console.log(checkoutData);
+                    console.log("=========checkout data=======================");
+
+                    // Function to handle the redirection
+                    function checkout(jsonData) {
+                        const checkoutForm = document.createElement("form");
+                        checkoutForm.style.display = "none";
+                        checkoutForm.method = "POST";
+                        checkoutForm.action = "https://gatewaybackend.quickteller.co.ke/ipg-backend/api/checkout";;
+                        //checkoutForm.target = "_blank";
+
+                        for (const key in jsonData) {
+                            const formField = document.createElement("input");
+                            formField.name = key;
+                            formField.value = jsonData[key];
+                            checkoutForm.appendChild(formField);
+                        }
+
+                        document.body.appendChild(checkoutForm);
+                        checkoutForm.submit();
+                        document.body.removeChild(checkoutForm);
+                    }
+
+                    //new checkout function
+                    
+                    //new checkout function
+
+                    checkout(checkoutData);
+                },
+                error: function(xhr) {
+                    console.log("error");
+                    console.log(xhr.responseJSON.error);
+                    // Handle error response
+                    //use swal
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Opps!!!',
+                        html: xhr.responseJSON.error,
+                        confirmButtonColor: "#3a57e8"
+                    })
+                    $('#response').html('<p>An error occurred: ' + xhr.responseText + '</p>');
+                }
+            });
+        });
+    });
 </script>

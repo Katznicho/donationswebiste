@@ -11,11 +11,11 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Payments\Pesapal;
 use App\Traits\MessageTrait;
-use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Services\InterswitchService;
 
 class PaymentController extends Controller
 {
@@ -27,6 +27,44 @@ class PaymentController extends Controller
     {
         //
         return view("payments.index");
+    }
+
+    protected $interswitchService;
+
+    public function __construct(InterswitchService $interswitchService)
+    {
+        $this->interswitchService = $interswitchService;
+    }
+
+    public function checkTransaction(Request $request)
+    {
+        try {
+          $request->validate([
+            'transaction_id' => 'required|string'
+          ]);  
+        $transactionId = $request->input('transaction_id');
+        $response = $this->interswitchService->transactionInquiry($transactionId);
+        $response = json_decode($response, true);
+        return response()->json(['data' => $response]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['success' => false, 'message' => $th->getMessage()]);
+        }
+    }
+
+    public function finishInterswitchPayment(Request $request){
+        try {
+            //code..
+            Log::info("==========interswitch callback===========================");
+            Log::info($request->all());
+            Log::info("===============interswitch callback==========================================");
+            return response()->json(['success' => true, 'message' => 'Success', 'response' => $request->all()]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['success' => true, 'message' => 'Success', 'response' => $request->all()]);
+
+        }
     }
 
 

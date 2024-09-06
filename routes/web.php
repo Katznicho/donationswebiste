@@ -34,6 +34,7 @@ Route::get('/home', function () {
 
 Route::resource('babies', RescueBabyController::class);
 Route::resource('child', ChildController::class);
+Route::post('/sponsor-child', [ChildController::class, 'store'])->name('sponsor-child');
 Route::resource('donate', DonationController::class);
 
 Route::get("/donate", [DonationController::class, "index"])->name("donate");
@@ -63,7 +64,7 @@ Route::get('/dashboard', function () {
     //  SponsorChild
     $email  = auth()->user()->email;
     $sponsor_id = Sponsor::where('email', $email)->first()->id;
-    
+
     $children = SponsorChild::where('sponsor_id', $sponsor_id)->with('child')->get();
 
     return view('dashboard', compact('children'));

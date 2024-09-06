@@ -24,7 +24,11 @@ Route::get("listIPNS", [PaymentController::class, "listIPNS"]);
 Route::get("completePayment", [PaymentController::class, "completePayment"]);
 Route::post("processOrder", [PaymentController::class, "processOrder"]);
 
+Route::any('finish-interswitch-payment', [PaymentController::class, 'finishInterswitchPayment']);
+
 Route::get("finishPayment", [PaymentController::class, "finishPayment"]);
 Route::get("cancelPayment", [PaymentController::class, "cancelPayment"]);
 
 Route::post("testSendingMessages", [PaymentController::class, "testSendingMessages"]);
+
+Route::post("checkTransaction",[PaymentController::class, "checkTransaction"]);
